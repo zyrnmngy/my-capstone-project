@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Profile - Filibustero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+        color: #4a4235;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    .background-decoration {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 10% 20%, rgba(218, 165, 85, 0.04) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(184, 134, 58, 0.03) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .profile-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: #fffcf7;
+        border: 1px solid #e8dfd0;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 10px 25px rgba(139, 107, 66, 0.08);
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #e8dfd0;
+        padding-bottom: 1.5rem;
+    }
+
+    .header .logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fffcf7;
+        font-size: 2rem;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(212, 162, 89, 0.2);
+    }
+
+    .header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #3d3529;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
+    }
+
+    .header p {
+        color: #7a6f5d;
+        font-size: 1.1rem;
+    }
+
+    .navigation {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .nav-btn {
+        background: #faf6ef;
+        color: #5a5043;
+        border: 1px solid #e8dfd0;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        margin: 0 0.5rem;
+        transition: all 0.2s ease;
+        display: inline-block;
+    }
+
+    .nav-btn:hover {
+        background: #d4a259;
+        color: #fffcf7;
+        border-color: #d4a259;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(212, 162, 89, 0.2);
+    }
+
+    .nav-btn i {
+        margin-right: 0.5rem;
+    }
+
+    .form-section {
+        background: #faf6ef;
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid #e8dfd0;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #3d3529;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        color: #5a5043;
+        font-weight: 500;
+        margin-bottom: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .required {
+        color: #b36f59;
+    }
+
+    .form-input, .form-select {
+        width: 100%;
+        padding: 0.9rem 1.2rem;
+        background: #fffcf7;
+        border: 1.5px solid #e8dfd0;
+        border-radius: 8px;
+        color: #4a4235;
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.2s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+        outline: none;
+        border-color: #d4a259;
+        box-shadow: 0 0 0 3px rgba(212, 162, 89, 0.1);
+    }
+
+    .form-input::placeholder {
+        color: #a39582;
+        opacity: 0.7;
+    }
+
+    .password-field {
+        position: relative;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #7a6f5d;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: color 0.2s ease;
+    }
+
+    .password-toggle:hover {
+        color: #d4a259;
+    }
+
+    .sections-management {
+        background: #f5f0e6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        border: 1px solid #e8dfd0;
+    }
+
+    .sections-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-tag {
+        background: #d4a259;
+        color: #fffcf7;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .remove-section {
+        background: none;
+        border: none;
+        color: #fffcf7;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: color 0.2s ease;
+    }
+
+    .remove-section:hover {
+        color: #f5f0e6;
+    }
+
+    .add-section-group {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .add-section-btn {
+        background: #f5f0e6;
+        color: #5a5043;
+        border: 1px solid #e8dfd0;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+    }
+
+    .add-section-btn:hover {
+        background: #d4a259;
+        color: #fffcf7;
+        border-color: #d4a259;
+    }
+
+    .temp-password-warning {
+        background: #fef9f0;
+        color: #9c7a4d;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border: 1px solid #f0dfb8;
+        font-weight: 500;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+        color: #fffcf7;
+        box-shadow: 0 4px 12px rgba(212, 162, 89, 0.2);
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #b8863a 0%, #9c7a4d 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(212, 162, 89, 0.3);
+    }
+
+    .btn-secondary {
+        background: #fffcf7;
+        color: #5a5043;
+        border: 1.5px solid #e8dfd0;
+    }
+
+    .btn-secondary:hover {
+        background: #faf6ef;
+        border-color: #d4a259;
+        color: #d4a259;
+    }
+
+    .alert {
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        border: 1px solid;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .alert-success {
+        background: #f9f7f3;
+        color: #8b6b3f;
+        border-color: #e8dfd0;
+    }
+
+    .alert-danger {
+        background: #fdf5f3;
+        color: #b36f59;
+        border-color: #e8c9bf;
+    }
+
+    .alert-info {
+        background: #f9f7f3;
+        color: #8b6b3f;
+        border-color: #e8dfd0;
+    }
+
+    .loading-spinner {
+        display: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 252, 247, 0.3);
+        border-top: 2px solid #fffcf7;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-right: 0.5rem;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 1rem;
+        }
+
+        .profile-container {
+            padding: 1.5rem;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .nav-btn {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .add-section-group {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .add-section-group .form-select {
+            margin-bottom: 0;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="background-texture"></div>
+    
+    <div class="profile-container">
+        <div class="header">
+            <div class="logo">🏛️</div>
+            <h1>Teacher Profile</h1>
+            <p>Manage your account information</p>
+        </div>
+
+        <div class="navigation">
+            <a href="teacher_dashboard.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>Back to Dashboard
+            </a>
+        </div>
+
+        <div id="tempPasswordWarning" class="temp-password-warning hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            You are using a temporary password. Please update your password for security.
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <form id="profileForm">
+            <div class="form-section">
+                <h3 class="section-title">Current Information</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="currentUsername">
+                            Current Username <span class="required">*</span>
+                        </label>
+                        <input type="text" id="currentUsername" class="form-input" required 
+                               placeholder="Enter your current username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="currentPassword">
+                            Current Password <span class="required">*</span>
+                        </label>
+                        <div class="password-field">
+                            <input type="password" id="currentPassword" class="form-input" required 
+                                   placeholder="Enter your current password">
+                            <button type="button" class="password-toggle" onclick="togglePassword('currentPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">Account Information</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="idNumber">
+                            ID Number <span class="required">*</span>
+                        </label>
+                        <input type="text" id="idNumber" class="form-input" required 
+                               placeholder="Enter your ID number">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">
+                            Full Name <span class="required">*</span>
+                        </label>
+                        <input type="text" id="fullName" class="form-input" required 
+                               placeholder="Enter your full name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">Update Information (Optional)</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="newUsername">
+                            New Username
+                        </label>
+                        <input type="text" id="newUsername" class="form-input" 
+                               placeholder="Enter new username (leave empty to keep current)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="newFullName">
+                            New Full Name
+                        </label>
+                        <input type="text" id="newFullName" class="form-input" 
+                               placeholder="Enter new full name (leave empty to keep current)">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="newIdNumber">
+                            New ID Number
+                        </label>
+                        <input type="text" id="newIdNumber" class="form-input" 
+                               placeholder="Enter new ID number (leave empty to keep current)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="newPassword">
+                            New Password
+                        </label>
+                        <div class="password-field">
+                            <input type="password" id="newPassword" class="form-input" 
+                                   placeholder="Enter new password (leave empty to keep current)">
+                            <button type="button" class="password-toggle" onclick="togglePassword('newPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="confirmPassword">
+                            Confirm New Password
+                        </label>
+                        <div class="password-field">
+                            <input type="password" id="confirmPassword" class="form-input" 
+                                   placeholder="Confirm your new password">
+                            <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">Sections Management</h3>
+                <div class="sections-management">
+                    <div class="form-group">
+                        <label class="form-label">Current Sections</label>
+                        <div class="sections-list" id="currentSections">
+                            <!-- Sections will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Add New Section</label>
+                        <div class="add-section-group">
+                            <select class="form-select" id="newSectionSelect">
+                                <option value="">Select a section to add</option>
+                                <option value="BTLED - ICT">BTLED - ICT</option>
+                                <option value="BTLED - HE">BTLED - HE</option>
+                                <option value="BTLED - IA">BTLED - IA</option>
+                                <option value="BS INFOTECH">BS INFOTECH</option>
+                                <option value="BSED - MATH">BSED - MATH</option>
+                                <option value="BSED - ENGLISH">BSED - ENGLISH</option>
+                                <option value="BSED -SOCIAL STUDIES">BSED -SOCIAL STUDIES</option>
+                                <option value="BINDTECH - AT">BINDTECH - AT</option>
+                                <option value="BINDTECH - CT">BINDTECH - CT</option>
+                                <option value="BS - COMTECH">BS - COMTECH</option>
+                                <option value="BINDTECH - MT">BINDTECH - MT</option>
+                                <option value="BS BIOLOGY">BS BIOLOGY</option>
+                            </select>
+                            <button type="button" class="add-section-btn" onclick="addSection()">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit" class="btn btn-primary" id="updateBtn">
+                    <div class="loading-spinner" id="loadingSpinner"></div>
+                    <span id="updateBtnText">Update Profile</span>
+                </button>
+                <a href="teacher_dashboard.html" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://filibustero-web.com//php/website/auth.php';
+        
+        let currentSections = [];
+        let sectionsToAdd = [];
+        let sectionsToRemove = [];
+        let userInfo = {};
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!checkAuth()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Prevent back button navigation after logout
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                    if (!checkAuth()) {
+                        window.location.replace('login.html');
+                    }
+                }
+            });
+
+            loadUserProfile();
+            document.getElementById('profileForm').addEventListener('submit', handleProfileUpdate);
+        });
+
+        function checkAuth() {
+            const auth = window.FilibusteroAuth || (window.parent && window.parent.FilibusteroAuth);
+            if (!auth) {
+                // Try to load from localStorage directly
+                const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+                if (!savedAuth) return false;
+                
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    return authData.expires > Date.now();
+                } catch (e) {
+                    return false;
+                }
+            }
+            return auth.isLoggedIn();
+        }
+
+        function getCurrentUser() {
+            const auth = window.FilibusteroAuth || (window.parent && window.parent.FilibusteroAuth);
+            if (auth) {
+                return auth.getCurrentUser();
+            }
+            
+            // Fallback to localStorage
+            const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+            if (savedAuth) {
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    if (authData.expires > Date.now()) {
+                        return authData.user;
+                    }
+                } catch (e) {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        function hasTemporaryPassword() {
+            const auth = window.FilibusteroAuth || (window.parent && window.parent.FilibusteroAuth);
+            if (auth) {
+                return auth.hasTemporaryPassword();
+            }
+            
+            // Fallback to localStorage
+            const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+            if (savedAuth) {
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    return authData.tempPassword || false;
+                } catch (e) {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        function getToken() {
+            const auth = window.FilibusteroAuth || (window.parent && window.parent.FilibusteroAuth);
+            if (auth) {
+                return auth.getToken();
+            }
+            
+            // Fallback to localStorage
+            const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+            if (savedAuth) {
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    if (authData.expires > Date.now()) {
+                        return authData.token;
+                    }
+                } catch (e) {
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        async function loadUserProfile() {
+            try {
+                userInfo = getCurrentUser();
+                if (!userInfo) {
+                    throw new Error('User information not found');
+                }
+
+                // Show temporary password warning if needed
+                if (hasTemporaryPassword()) {
+                    document.getElementById('tempPasswordWarning').classList.remove('hidden');
+                }
+
+                // Pre-fill current information
+                document.getElementById('currentUsername').value = userInfo.username;
+                document.getElementById('idNumber').value = userInfo.id_number;
+                document.getElementById('fullName').value = userInfo.full_name;
+
+                // Load teacher sections
+                await loadTeacherSections();
+
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                showAlert('Error loading profile information', 'danger');
+            }
+        }
+
+        async function loadTeacherSections() {
+            try {
+                const token = getToken();
+                const response = await fetch(API_BASE, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=get_teacher_sections&token=${encodeURIComponent(token)}`
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    currentSections = data.sections || [];
+                    renderCurrentSections();
+                } else {
+                    console.warn('Could not load sections:', data.error);
+                    currentSections = [];
+                    renderCurrentSections();
+                }
+            } catch (error) {
+                console.error('Error loading sections:', error);
+                currentSections = [];
+                renderCurrentSections();
+            }
+        }
+
+        function renderCurrentSections() {
+            const container = document.getElementById('currentSections');
+            
+            if (currentSections.length === 0) {
+                container.innerHTML = '<p style="color: #c8b894; font-style: italic;">No sections assigned</p>';
+                return;
+            }
+
+            container.innerHTML = currentSections.map(section => `
+                <div class="section-tag">
+                    ${section}
+                    <button type="button" class="remove-section" onclick="removeSection('${section}')" title="Remove section">
+                        ×
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function addSection() {
+            const select = document.getElementById('newSectionSelect');
+            const selectedSection = select.value;
+            
+            if (!selectedSection) {
+                showAlert('Please select a section to add', 'danger');
+                return;
+            }
+
+            if (currentSections.includes(selectedSection)) {
+                showAlert('This section is already assigned to you', 'danger');
+                return;
+            }
+
+            if (sectionsToAdd.includes(selectedSection)) {
+                showAlert('This section is already in your additions list', 'danger');
+                return;
+            }
+
+            // Remove from sectionsToRemove if it was there
+            const removeIndex = sectionsToRemove.indexOf(selectedSection);
+            if (removeIndex > -1) {
+                sectionsToRemove.splice(removeIndex, 1);
+            } else {
+                sectionsToAdd.push(selectedSection);
+            }
+
+            currentSections.push(selectedSection);
+            renderCurrentSections();
+            select.value = '';
+            
+            showAlert(`Section "${selectedSection}" added to your list`, 'info');
+        }
+
+        function removeSection(section) {
+            const index = currentSections.indexOf(section);
+            if (index > -1) {
+                currentSections.splice(index, 1);
+                
+                // Check if this was an original section or a newly added one
+                const addIndex = sectionsToAdd.indexOf(section);
+                if (addIndex > -1) {
+                    sectionsToAdd.splice(addIndex, 1);
+                } else {
+                    sectionsToRemove.push(section);
+                }
+                
+                renderCurrentSections();
+                showAlert(`Section "${section}" removed from your list`, 'info');
+            }
+        }
+
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const button = field.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                field.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        async function handleProfileUpdate(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const currentUsername = document.getElementById('currentUsername').value.trim();
+            const currentPassword = document.getElementById('currentPassword').value;
+            const idNumber = document.getElementById('idNumber').value.trim();
+            const fullName = document.getElementById('fullName').value.trim();
+            const newUsername = document.getElementById('newUsername').value.trim();
+            const newFullName = document.getElementById('newFullName').value.trim();
+            const newIdNumber = document.getElementById('newIdNumber').value.trim();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validation
+            if (!currentUsername || !currentPassword || !idNumber || !fullName) {
+                showAlert('Please fill in all required fields', 'danger');
+                return;
+            }
+
+            // Check if temporary password and new password is required
+            if (hasTemporaryPassword() && !newPassword) {
+                showAlert('You must set a new password since you are using a temporary password', 'danger');
+                return;
+            }
+
+            // Password confirmation check
+            if (newPassword && newPassword !== confirmPassword) {
+                showAlert('New password and confirmation do not match', 'danger');
+                return;
+            }
+
+            // Minimum password length check
+            if (newPassword && newPassword.length < 6) {
+                showAlert('New password must be at least 6 characters long', 'danger');
+                return;
+            }
+
+            setLoading(true);
+            hideAlerts();
+
+            try {
+                const token = getToken();
+                const formData = new URLSearchParams();
+                formData.append('action', 'update_teacher_profile');
+                formData.append('token', token);
+                formData.append('current_username', currentUsername);
+                formData.append('current_password', currentPassword);
+                formData.append('id_number', idNumber);
+                formData.append('full_name', fullName);
+                
+                // Optional updates
+                if (newUsername) formData.append('new_username', newUsername);
+                if (newFullName) formData.append('new_full_name', newFullName);
+                if (newIdNumber) formData.append('new_id_number', newIdNumber);
+                if (newPassword) formData.append('new_password', newPassword);
+                
+                // Section changes
+                if (sectionsToAdd.length > 0) {
+                    formData.append('sections_to_add', JSON.stringify(sectionsToAdd));
+                }
+                if (sectionsToRemove.length > 0) {
+                    formData.append('sections_to_remove', JSON.stringify(sectionsToRemove));
+                }
+
+                const response = await fetch(API_BASE, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showAlert('Profile updated successfully!', 'success');
+                    
+                    // Update local auth data if username or other details changed
+                    updateLocalAuth(data.updated_user);
+                    
+                    // Reset form states
+                    sectionsToAdd = [];
+                    sectionsToRemove = [];
+                    
+                    // Clear optional fields
+                    document.getElementById('newUsername').value = '';
+                    document.getElementById('newFullName').value = '';
+                    document.getElementById('newIdNumber').value = '';
+                    document.getElementById('newPassword').value = '';
+                    document.getElementById('confirmPassword').value = '';
+                    document.getElementById('currentPassword').value = '';
+                    
+                    // Hide temp password warning if password was changed
+                    if (newPassword) {
+                        document.getElementById('tempPasswordWarning').classList.add('hidden');
+                    }
+                    
+                    // Reload profile to show updated information
+                    setTimeout(() => {
+                        loadUserProfile();
+                    }, 1000);
+                    
+                } else {
+                    throw new Error(data.error || 'Profile update failed');
+                }
+
+            } catch (error) {
+                console.error('Profile update error:', error);
+                showAlert(error.message || 'Failed to update profile. Please try again.', 'danger');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function updateLocalAuth(updatedUser) {
+            try {
+                const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+                if (savedAuth) {
+                    const authData = JSON.parse(savedAuth);
+                    authData.user = updatedUser;
+                    authData.tempPassword = false; // Clear temp password flag
+                    localStorage.setItem('filibustero_teacher_auth', JSON.stringify(authData));
+                }
+            } catch (error) {
+                console.error('Error updating local auth:', error);
+            }
+        }
+
+        function setLoading(loading) {
+            const btn = document.getElementById('updateBtn');
+            const spinner = document.getElementById('loadingSpinner');
+            const btnText = document.getElementById('updateBtnText');
+            
+            btn.disabled = loading;
+            spinner.style.display = loading ? 'inline-block' : 'none';
+            btnText.textContent = loading ? 'Updating...' : 'Update Profile';
+        }
+
+        function showAlert(message, type) {
+            const container = document.getElementById('alertContainer');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type}`;
+            
+            const iconMap = {
+                success: 'fas fa-check-circle',
+                danger: 'fas fa-exclamation-circle',
+                info: 'fas fa-info-circle',
+                warning: 'fas fa-exclamation-triangle'
+            };
+            
+            alertDiv.innerHTML = `
+                <i class="${iconMap[type] || iconMap.info}"></i>
+                ${message}
+            `;
+            
+            container.appendChild(alertDiv);
+            
+            // Auto-remove after 5 seconds for non-error messages
+            if (type !== 'danger') {
+                setTimeout(() => {
+                    if (alertDiv.parentNode) {
+                        alertDiv.parentNode.removeChild(alertDiv);
+                    }
+                }, 5000);
+            }
+            
+            // Scroll to top to show alert
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function hideAlerts() {
+            const container = document.getElementById('alertContainer');
+            container.innerHTML = '';
+        }
+
+        // Handle browser back/forward navigation
+        window.addEventListener('popstate', function() {
+            if (!checkAuth()) {
+                window.location.replace('login.html');
+            }
+        });
+
+        // Prevent form resubmission on page refresh
+        window.addEventListener('beforeunload', function() {
+            if (document.getElementById('updateBtn').disabled) {
+                return 'Profile update in progress. Are you sure you want to leave?';
+            }
+        });
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + S to save
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                document.getElementById('profileForm').requestSubmit();
+            }
+            
+            // Escape to cancel/go back
+            if (e.key === 'Escape') {
+                window.location.href = 'teacher_dashboard.html';
+            }
+        });
+
+        // Auto-save functionality (optional)
+        let autoSaveTimer;
+        function setupAutoSave() {
+            const inputs = document.querySelectorAll('.form-input, .form-select');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    clearTimeout(autoSaveTimer);
+                    autoSaveTimer = setTimeout(() => {
+                        // Could implement auto-save draft functionality here
+                        console.log('Auto-save triggered (not implemented)');
+                    }, 5000);
+                });
+            });
+        }
+
+        // Initialize auto-save when page loads
+        setTimeout(setupAutoSave, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filibustero Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            color: #4a4235;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(218, 165, 85, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(184, 134, 58, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .login-container {
+            background: #fffcf7;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 
+                0 10px 25px rgba(139, 107, 66, 0.08),
+                0 5px 10px rgba(139, 107, 66, 0.02);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            border: 1px solid #e8dfd0;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fffcf7;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.3);
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3d3529;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #7a6f5d;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            color: #5a5043;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: #faf6ef;
+            border: 1.5px solid #e8dfd0;
+            border-radius: 8px;
+            color: #4a4235;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper .form-input {
+            padding-right: 3.5rem;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237a6f5d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
+            padding-right: 2.5rem;
+        }
+
+        .form-select option {
+            background: white;
+            color: #4a4235;
+            padding: 0.5rem;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #d4a259;
+            box-shadow: 0 0 0 3px rgba(212, 162, 89, 0.15);
+            background: #fffcf7;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        .toggle-password:hover {
+            color: #666;
+        }
+
+        .toggle-password svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .login-btn, .send-reset-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            color: #fffcf7;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-btn:hover, .send-reset-btn:hover {
+            background: linear-gradient(135deg, #b8863a 0%, #9c6d2e 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(212, 162, 89, 0.4);
+        }
+
+        .login-btn:active, .send-reset-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled, .send-reset-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .create-account-btn {
+            width: 100%;
+            background: #fffcf7;
+            color: #b8863a;
+            border: 1.5px solid #e8dfd0;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .create-account-btn:hover {
+            background: #faf6ef;
+            border-color: #d4a259;
+            color: #9c6d2e;
+        }
+
+        .error-message {
+            background: #fdf5f3;
+            color: #b36f59;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #e8c9bf;
+            font-size: 0.9rem;
+        }
+
+        .warning-message {
+            background: #fef9f0;
+            color: #9c7a4d;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #f0dfb8;
+            font-size: 0.9rem;
+        }
+
+        .success-message {
+            background: #f7f4ed;
+            color: #8b764d;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #ddd3bd;
+            font-size: 0.9rem;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 252, 247, 0.3);
+            border-top: 2px solid #fffcf7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .forgot-password a {
+            color: #7a6f5d;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #d4a259;
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: #a39582;
+            font-size: 0.8rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e8dfd0;
+            margin: 0 1rem;
+        }
+
+        .role-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            background: #faf6ef;
+            border: 1px solid #e8dfd0;
+            overflow: hidden;
+        }
+
+        .role-tab {
+            flex: 1;
+            padding: 0.8rem;
+            background: transparent;
+            border: none;
+            color: #7a6f5d;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .role-tab.active {
+            background: #d4a259;
+            color: #fffcf7;
+        }
+
+        .role-tab:hover:not(.active) {
+            background: #f5f0e6;
+            color: #5a5043;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .back-link a {
+            color: #7a6f5d;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .back-link a:hover {
+            color: #d4a259;
+            text-decoration: underline;
+        }
+
+        #forgotPasswordForm {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .title {
+                font-size: 1.75rem;
+            }
+
+            .logo {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-decoration"></div>
+    
+    <div class="login-container">
+        <div class="logo">🏛️</div>
+        <h1 class="title">Filibustero</h1>
+        <p class="subtitle" id="dynamicSubtitle">Choose Your Role</p>
+        
+        <!-- Role Selection Tabs -->
+        <div class="role-tabs" id="roleTabs">
+            <button class="role-tab active" data-role="teacher" onclick="switchRole('teacher')">
+                Teacher
+            </button>
+            <button class="role-tab" data-role="admin" onclick="switchRole('admin')">
+                Admin
+            </button>
+        </div>
+        
+        <div id="errorMessage" class="error-message"></div>
+        <div id="warningMessage" class="warning-message"></div>
+        <div id="successMessage" class="success-message"></div>
+        
+        <!-- Login Form -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" id="username" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" class="form-input" required>
+                    <button type="button" class="toggle-password" data-target="password" aria-label="Toggle password visibility">
+                        <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">
+                <div class="loading-spinner" id="loadingSpinner"></div>
+                <span id="loginBtnText">Login</span>
+            </button>
+        </form>
+        
+        <div class="forgot-password" id="forgotPasswordSection">
+            <a onclick="showForgotPasswordForm()">Forgot Password?</a>
+        </div>
+
+        <div class="divider" id="teacherDivider">
+            OR
+        </div>
+
+        <a href="teacher_create.html" class="create-account-btn" id="createAccountBtn">
+            Create Teacher Account
+        </a>
+
+        <!-- Forgot Password Form -->
+        <form id="forgotPasswordForm">
+            <div class="form-group">
+                <label class="form-label" for="forgotEmail">Enter Your Email Address</label>
+                <input type="email" id="forgotEmail" class="form-input" required>
+            </div>
+            
+            <button type="submit" class="send-reset-btn" id="sendResetBtn">
+                <div class="loading-spinner" id="resetLoadingSpinner"></div>
+                <span id="sendResetBtnText">Send Password Reset Email</span>
+            </button>
+        </form>
+
+        <div class="back-link" id="backLinkSection" style="display: none;">
+            <a onclick="hideForgotPasswordForm()">← Back to Login</a>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = 'https://filibustero-web.com/php/website/auth.php';
+        const ADMIN_INDEX = 'https://filibustero-web.com//php/admin/index.php';
+        
+        let currentRole = 'teacher';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            checkExistingSession();
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('forgotPasswordForm').addEventListener('submit', handleForgotPasswordEmail);
+            
+            // Setup password toggle buttons
+            document.querySelectorAll('.toggle-password').forEach(btn => {
+                btn.addEventListener('click', togglePasswordVisibility);
+            });
+            
+            document.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !document.getElementById('loginBtn').disabled) {
+                    handleLogin(e);
+                }
+            });
+        });
+
+        function togglePasswordVisibility(e) {
+            e.preventDefault();
+            const targetId = e.target.closest('.toggle-password').dataset.target;
+            const input = document.getElementById(targetId);
+            const btn = e.target.closest('.toggle-password');
+            const svg = btn.querySelector('svg');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                svg.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                input.type = 'password';
+                svg.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        }
+
+        function switchRole(role) {
+            currentRole = role;
+            
+            document.querySelectorAll('.role-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-role="${role}"]`).classList.add('active');
+            
+            const subtitle = document.getElementById('dynamicSubtitle');
+            const loginBtnText = document.getElementById('loginBtnText');
+            const forgotPasswordSection = document.getElementById('forgotPasswordSection');
+            const divider = document.getElementById('teacherDivider');
+            const createAccountBtn = document.getElementById('createAccountBtn');
+            
+            if (role === 'teacher') {
+                subtitle.textContent = 'Teacher Dashboard Login';
+                loginBtnText.textContent = 'Login to Dashboard';
+                forgotPasswordSection.style.display = 'block';
+                divider.style.display = 'flex';
+                createAccountBtn.style.display = 'inline-block';
+            } else {
+                subtitle.textContent = 'Administrator Login';
+                loginBtnText.textContent = 'Login as Admin';
+                forgotPasswordSection.style.display = 'none';
+                divider.style.display = 'none';
+                createAccountBtn.style.display = 'none';
+            }
+            
+            hideMessages();
+            hideForgotPasswordForm();
+        }
+
+        function showForgotPasswordForm() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('forgotPasswordSection').style.display = 'none';
+            document.getElementById('teacherDivider').style.display = 'none';
+            document.getElementById('createAccountBtn').style.display = 'none';
+            document.getElementById('roleTabs').style.display = 'none';
+            
+            document.getElementById('forgotPasswordForm').style.display = 'block';
+            document.getElementById('backLinkSection').style.display = 'block';
+            
+            document.getElementById('dynamicSubtitle').textContent = 'Reset Your Password';
+            hideMessages();
+        }
+
+        function hideForgotPasswordForm() {
+            document.getElementById('forgotPasswordForm').style.display = 'none';
+            document.getElementById('backLinkSection').style.display = 'none';
+            document.getElementById('roleTabs').style.display = 'flex';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('forgotPasswordSection').style.display = 'block';
+            document.getElementById('teacherDivider').style.display = 'flex';
+            document.getElementById('createAccountBtn').style.display = 'inline-block';
+            
+            document.getElementById('dynamicSubtitle').textContent = 'Choose Your Role';
+            document.getElementById('forgotEmail').value = '';
+            hideMessages();
+        }
+
+        async function checkExistingSession() {
+            if (currentRole === 'teacher') {
+                const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+                if (savedAuth) {
+                    try {
+                        const authData = JSON.parse(savedAuth);
+                        if (authData.expires > Date.now()) {
+                            const isValid = await verifySession(authData.token);
+                            if (isValid) {
+                                showSuccess('Already logged in, redirecting...');
+                                setTimeout(() => {
+                                    window.location.href = 'teacher_dashboard.html';
+                                }, 1000);
+                                return;
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Session check error:', e);
+                    }
+                    localStorage.removeItem('filibustero_teacher_auth');
+                }
+            }
+        }
+
+        async function verifySession(token) {
+            try {
+                const response = await fetch(`${API_BASE}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=verify_session&token=${encodeURIComponent(token)}`
+                });
+                
+                const data = await response.json();
+                return data.success;
+            } catch (error) {
+                console.error('Session verification failed:', error);
+                return false;
+            }
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                showError('Please enter both username and password');
+                return;
+            }
+            
+            setLoading(true);
+            hideMessages();
+            
+            try {
+                if (currentRole === 'admin') {
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = ADMIN_INDEX;
+                    
+                    const usernameInput = document.createElement('input');
+                    usernameInput.type = 'hidden';
+                    usernameInput.name = 'username';
+                    usernameInput.value = username;
+                    form.appendChild(usernameInput);
+                    
+                    const passwordInput = document.createElement('input');
+                    passwordInput.type = 'hidden';
+                    passwordInput.name = 'password';
+                    passwordInput.value = password;
+                    form.appendChild(passwordInput);
+                    
+                    const roleInput = document.createElement('input');
+                    roleInput.type = 'hidden';
+                    roleInput.name = 'role';
+                    roleInput.value = 'admin';
+                    form.appendChild(roleInput);
+                    
+                    document.body.appendChild(form);
+                    showSuccess('Redirecting to admin panel...');
+                    
+                    setTimeout(() => {
+                        form.submit();
+                    }, 500);
+                    
+                } else {
+                    const response = await fetch(`${API_BASE}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        if (data.user.user_type !== 'teacher') {
+                            throw new Error('Access denied. Teacher account required.');
+                        }
+                        
+                        const authData = {
+                            user: data.user,
+                            token: data.token,
+                            expires: new Date(data.expires_at).getTime(),
+                            tempPassword: data.temp_password || false
+                        };
+                        
+                        localStorage.setItem('filibustero_teacher_auth', JSON.stringify(authData));
+                        
+                        if (data.temp_password) {
+                            showWarning('You are using a temporary password. Please change it in your dashboard settings for security.');
+                            setTimeout(() => {
+                                window.location.href = 'teacher_dashboard.html';
+                            }, 3000);
+                        } else {
+                            showSuccess(`Welcome ${data.user.full_name}! Redirecting to dashboard...`);
+                            setTimeout(() => {
+                                window.location.href = 'teacher_dashboard.html';
+                            }, 1500);
+                        }
+                    } else {
+                        throw new Error(data.error || 'Login failed');
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                
+                if (error.message.includes('fetch')) {
+                    showError('Cannot connect to server. Please check your connection or contact IT support.');
+                } else {
+                    showError(error.message || 'Login failed. Please try again.');
+                }
+                setLoading(false);
+            }
+        }
+
+        async function handleForgotPasswordEmail(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('forgotEmail').value.trim();
+            
+            if (!email) {
+                showError('Please enter your email address');
+                return;
+            }
+            
+            setResetLoading(true);
+            hideMessages();
+            
+            try {
+                const response = await fetch(`${API_BASE}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=forgot_password_email&email=${encodeURIComponent(email)}`
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showSuccess('Password reset email sent successfully! Please check your inbox for instructions.');
+                    setTimeout(() => {
+                        hideForgotPasswordForm();
+                    }, 2000);
+                } else {
+                    throw new Error(data.error || 'Failed to send reset email');
+                }
+                
+            } catch (error) {
+                console.error('Forgot password error:', error);
+                showError(error.message || 'Failed to send reset email. Please try again.');
+            } finally {
+                setResetLoading(false);
+            }
+        }
+
+        function setLoading(loading) {
+            const btn = document.getElementById('loginBtn');
+            const spinner = document.getElementById('loadingSpinner');
+            const btnText = document.getElementById('loginBtnText');
+            
+            btn.disabled = loading;
+            spinner.style.display = loading ? 'inline-block' : 'none';
+            btnText.textContent = loading ? 'Logging in...' : (currentRole === 'teacher' ? 'Login to Dashboard' : 'Login as Admin');
+        }
+
+        function setResetLoading(loading) {
+            const btn = document.getElementById('sendResetBtn');
+            const spinner = document.getElementById('resetLoadingSpinner');
+            const btnText = document.getElementById('sendResetBtnText');
+            
+            btn.disabled = loading;
+            spinner.style.display = loading ? 'inline-block' : 'none';
+            btnText.textContent = loading ? 'Sending...' : 'Send Password Reset Email';
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 8000);
+        }
+
+        function showWarning(message) {
+            const warningDiv = document.getElementById('warningMessage');
+            warningDiv.textContent = message;
+            warningDiv.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('warningMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        // Export authentication object for dashboard to use
+        window.FilibusteroAuth = {
+            isLoggedIn: function() {
+                const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+                if (!savedAuth) return false;
+                
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    return authData.expires > Date.now();
+                } catch (e) {
+                    return false;
+                }
+            },
+            
+            getCurrentUser: function() {
+                const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+                if (!savedAuth) return null;
+                
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    if (authData.expires > Date.now()) {
+                        return authData.user;
+                    }
+                } catch (e) {
+                    // Invalid data
+                }
+                
+                localStorage.removeItem('filibustero_teacher_auth');
+                return null;
+            },
+
+            hasTemporaryPassword: function() {
+                const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+                if (!savedAuth) return false;
+                
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    if (authData.expires > Date.now()) {
+                        return authData.tempPassword || false;
+                    }
+                } catch (e) {
+                    // Invalid data
+                }
+                
+                return false;
+            },
+            
+            getToken: function() {
+                const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+                if (!savedAuth) return null;
+                
+                try {
+                    const authData = JSON.parse(savedAuth);
+                    if (authData.expires > Date.now()) {
+                        return authData.token;
+                    }
+                } catch (e) {
+                    // Invalid data
+                }
+                
+                localStorage.removeItem('filibustero_teacher_auth');
+                return null;
+            },
+            
+            logout: function() {
+                localStorage.removeItem('filibustero_teacher_auth');
+                window.location.href = 'teacher_login.html';
+            },
+            
+            apiCall: async function(endpoint, data = {}) {
+                const token = this.getToken();
+                if (!token) {
+                    throw new Error('Not authenticated');
+                }
+                
+                const response = await fetch(`${API_BASE}/${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: Object.keys(data).map(key => 
+                        `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+                    ).join('&') + `&token=${encodeURIComponent(token)}`
+                });
+                
+                return response.json();
+            }
+        };
+    </script>
+</body>
+</html>

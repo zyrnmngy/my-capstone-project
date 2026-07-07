@@ -1,0 +1,18 @@
+[2025-08-27 16:18:57] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:19:22] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:20:49] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:21:13] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:21:28] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:21:34] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:22:33] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:22:34] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:22:34] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:22:34] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:24:03] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:24:52] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:25:15] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:26:20] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-08-27 16:27:50] ERROR: Password debug {"username":null,"input_password":null,"stored_hash":null,"hash_info":{"algo":null,"algoName":"unknown","options":[]}}
+[2025-09-14 11:08:55] ERROR: Auth error: Database connection failed: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it 
+[2025-09-14 11:09:03] ERROR: Auth error: Database connection failed: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it 
+[2025-11-28 17:05:52] ERROR: 💥 Forgot password email error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'reset_expires' in 'SET' 

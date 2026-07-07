@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filibustero - Teacher Registration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            color: #4a4235;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow-x: hidden;
+        }
+
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(218, 165, 85, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(184, 134, 58, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .register-container {
+            background: #fffcf7;
+            border: 1px solid #e8dfd0;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 35px rgba(139, 107, 66, 0.08);
+            width: 100%;
+            max-width: 1100px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e8dfd0;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fffcf7;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.3);
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #3d3529;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #7a6f5d;
+            font-size: 1.2rem;
+        }
+
+        .form-container {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .right-panel {
+            flex: 1.5;
+            padding: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            color: #5a5043;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .required {
+            color: #b36f59;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #faf6ef;
+            border: 1.5px solid #e8dfd0;
+            border-radius: 8px;
+            color: #4a4235;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .password-wrapper .form-input {
+            padding-right: 2.8rem;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #d4a259;
+            box-shadow: 0 0 0 3px rgba(212, 162, 89, 0.15);
+            background: #fffcf7;
+        }
+
+        .form-input::placeholder {
+            color: #a39582;
+            opacity: 0.7;
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d4a259' viewBox='0 0 16 16'%3E%3Cpath d='M8 12L2 6h12L8 12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+        }
+
+        .toggle-password:hover {
+            color: #666;
+        }
+
+        .toggle-password svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .register-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            color: #fffcf7;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.3);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, #b8863a 0%, #9c6d2e 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(212, 162, 89, 0.4);
+        }
+
+        .register-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: #fdf5f3;
+            color: #b36f59;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #e8c9bf;
+            font-weight: 500;
+        }
+
+        .success-message {
+            background: #f7f4ed;
+            color: #8b764d;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            border: 1px solid #ddd3bd;
+            font-weight: 500;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 252, 247, 0.3);
+            border-top: 2px solid #fffcf7;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #7a6f5d;
+            font-size: 0.9rem;
+        }
+
+        .login-link a {
+            color: #b8863a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .login-link a:hover {
+            color: #9c6d2e;
+            text-decoration: underline;
+        }
+
+        .section-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 0.8rem;
+            border: 1px solid #e8dfd0;
+            border-radius: 8px;
+            background: #faf6ef;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+            accent-color: #d4a259;
+            width: 16px;
+            height: 16px;
+        }
+
+        .checkbox-group label {
+            color: #5a5043;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .welcome-text {
+            color: #7a6f5d;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .features-list {
+            margin-top: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .features-list li {
+            margin-bottom: 0.8rem;
+            color: #5a5043;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .form-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .section-checkboxes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                max-width: 600px;
+            }
+            
+            .section-checkboxes {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+            
+            .register-container {
+                padding: 1.5rem;
+            }
+            
+            .title {
+                font-size: 1.8rem;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-decoration"></div>
+    
+    <div class="register-container">
+        <div class="header-section">
+            <div class="logo">🏛️</div>
+            <h1 class="title">Filibustero</h1>
+            <p class="subtitle">Teacher Account Registration</p>
+        </div>
+        
+        <div class="form-container">
+            
+            <div class="right-panel">
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label class="form-label" for="user_type">User Type</label>
+                        <input type="text" id="user_type" class="form-input" value="Teacher" readonly style="background: #f5f0e6; color: #b8863a; font-weight: 600; cursor: not-allowed;">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="id_number">ID Number <span class="required">*</span></label>
+                            <input type="text" id="id_number" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="full_name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="full_name" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="username">Username <span class="required">*</span></label>
+                            <input type="text" id="username" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="password">Password <span class="required">*</span></label>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" class="form-input" required>
+                                <button type="button" class="toggle-password" data-target="password" aria-label="Toggle password visibility">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="confirm_password">Confirm Password <span class="required">*</span></label>
+                            <div class="password-wrapper">
+                                <input type="password" id="confirm_password" class="form-input" required>
+                                <button type="button" class="toggle-password" data-target="confirm_password" aria-label="Toggle password visibility">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Sections to Teach <span class="required">*</span></label>
+                        <div class="section-checkboxes" id="sectionsContainer">
+                            <!-- Sections will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="register-btn" id="registerBtn">
+                        <div class="loading-spinner" id="loadingSpinner"></div>
+                        Create Teacher Account
+                    </button>
+                </form>
+                
+                <div class="login-link">
+                    <a href="teacher_login.html">Already have an account? Login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration - Update this path to match your actual setup
+        const API_BASE = 'https://filibustero-web.com/php/website/auth.php';
+        
+        // Available sections (matches your database structure)
+        const availableSections = [
+            'BTLED - ICT',
+            'BTLED - HE',
+            'BTLED - IA',
+            'BS INFOTECH',
+            'BSED - MATH',
+            'BSED - ENGLISH',
+            'BSED -SOCIAL STUDIES',
+            'BINDTECH - AT',
+            'BINDTECH - CT',
+            'BS - COMTECH',
+            'BINDTECH - MT',
+            'BS BIOLOGY'
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Populate sections checkboxes
+            populateSections();
+            
+            // Setup form submission
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+            
+            // Setup password toggle buttons
+            document.querySelectorAll('.toggle-password').forEach(btn => {
+                btn.addEventListener('click', togglePasswordVisibility);
+            });
+        });
+
+        function populateSections() {
+            const container = document.getElementById('sectionsContainer');
+            container.innerHTML = '';
+            
+            availableSections.forEach(section => {
+                const checkboxGroup = document.createElement('div');
+                checkboxGroup.className = 'checkbox-group';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'sections';
+                checkbox.value = section;
+                checkbox.id = `section-${section.replace(/\s+/g, '-')}`;
+                
+                const label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.textContent = section;
+                label.style.color = '#b8863a';
+                label.style.cursor = 'pointer';
+                
+                checkboxGroup.appendChild(checkbox);
+                checkboxGroup.appendChild(label);
+                container.appendChild(checkboxGroup);
+            });
+        }
+
+        function togglePasswordVisibility(e) {
+            e.preventDefault();
+            const targetId = e.target.closest('.toggle-password').dataset.target;
+            const input = document.getElementById(targetId);
+            const btn = e.target.closest('.toggle-password');
+            const svg = btn.querySelector('svg');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                // Change to eye-off icon
+                svg.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                input.type = 'password';
+                // Change back to eye icon
+                svg.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            
+            const idNumber = document.getElementById('id_number').value.trim();
+            const fullName = document.getElementById('full_name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            
+            // Get selected sections
+            const selectedSections = [];
+            document.querySelectorAll('input[name="sections"]:checked').forEach(checkbox => {
+                selectedSections.push(checkbox.value);
+            });
+            
+            // Validation
+            if (!idNumber || !fullName || !email || !username || !password || !confirmPassword) {
+                showError('All fields are required');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('Please enter a valid email address');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters long');
+                return;
+            }
+            
+            if (selectedSections.length === 0) {
+                showError('Please select at least one section');
+                return;
+            }
+            
+            setLoading(true);
+            hideMessages();
+            
+            try {
+                const response = await fetch(API_BASE, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        action: 'register',
+                        user_type: 'teacher',
+                        id_number: idNumber,
+                        full_name: fullName,
+                        email: email,
+                        username: username,
+                        password: password,
+                        sections: JSON.stringify(selectedSections)
+                    }).toString()
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showSuccess(data.message || 'Registration successful! Your account is pending admin approval. Check your email for confirmation.');
+                    document.getElementById('registerForm').reset();
+                    // Repopulate sections after reset
+                    populateSections();
+                    
+                    // Redirect after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = 'teacher_login.html';
+                    }, 3000);
+                } else {
+                    throw new Error(data.error || 'Registration failed');
+                }
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                showError(error.message || 'Registration failed. Please try again.');
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function setLoading(loading) {
+            const btn = document.getElementById('registerBtn');
+            const spinner = document.getElementById('loadingSpinner');
+            
+            btn.disabled = loading;
+            spinner.style.display = loading ? 'inline-block' : 'none';
+            
+            if (loading) {
+                btn.innerHTML = '<div class="loading-spinner" style="display: inline-block;"></div> Creating Account...';
+            } else {
+                btn.innerHTML = 'Create Teacher Account';
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

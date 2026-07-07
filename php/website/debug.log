@@ -1,0 +1,509 @@
+[2025-08-27 16:19:23] DEBUG: Teacher login {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:20:49] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:21:13] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:21:13] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:21:13] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:21:13] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:21:13] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:21:28] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:21:28] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:21:28] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:21:28] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:21:28] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:21:34] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:22:33] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:22:34] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:22:34] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:22:34] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:24:03] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:24:03] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:24:03] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:24:03] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:24:03] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:24:52] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:24:52] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:24:52] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:24:53] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:24:53] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:25:15] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"password"},"get_data":[]}
+[2025-08-27 16:25:15] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:25:15] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:25:15] DEBUG: Password verification failed {"username":"reynaldo"}
+[2025-08-27 16:26:20] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:26:20] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:26:20] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:26:20] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:26:20] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:27:50] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:30:10] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:30:10] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:30:10] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:30:11] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:30:11] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:36:58] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:37:54] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-08-27 16:42:50] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"ce2a2db3005d39aeef8768e429db9f7e4ab34935a657e855c11ad6fee931ac1d"},"get_data":[]}
+[2025-08-27 16:42:50] DEBUG: Database session check failed, using PHP sessions only 
+[2025-08-27 16:42:54] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:42:54] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:42:54] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:42:54] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:42:54] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-08-27 16:55:45] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-08-27 16:55:45] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-08-27 16:55:45] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-08-27 16:55:45] DEBUG: Session table not available, using PHP sessions only 
+[2025-08-27 16:55:45] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 15:07:44] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-06 15:07:44] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-06 15:07:44] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-06 15:07:44] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 15:07:44] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 15:09:38] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"8eb5ee76b717904185cfc25088e6e7905f40c732fba55559a8054a5d12740a40"},"get_data":[]}
+[2025-09-06 15:09:38] DEBUG: Database session check failed, using PHP sessions only 
+[2025-09-06 15:09:43] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-06 15:09:43] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-06 15:09:43] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-06 15:09:43] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 15:09:43] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 15:39:42] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-06 15:39:42] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-06 15:39:42] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-06 15:39:42] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 15:39:42] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 17:19:09] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-06 17:19:09] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-06 17:19:09] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-06 17:19:10] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 17:19:10] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 17:54:43] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-06 17:54:43] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-06 17:54:43] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-06 17:54:43] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 17:54:43] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 18:38:09] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"teach","password":"teach"},"get_data":[]}
+[2025-09-06 18:38:09] DEBUG: Login attempt {"username":"teach"}
+[2025-09-06 18:38:09] DEBUG: User found {"user_id":3,"user_type":"teacher","temp_password":1}
+[2025-09-06 18:38:09] DEBUG: Password verification failed {"username":"teach"}
+[2025-09-06 18:38:34] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-06 18:38:34] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-06 18:38:34] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0}
+[2025-09-06 18:38:34] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 18:38:34] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-06 18:39:08] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"1eb709db1697ba3a787631f496d4ca0ced9234d314f2c9154c55dafecd069a0e"},"get_data":[]}
+[2025-09-06 18:39:08] DEBUG: Database session check failed, using PHP sessions only 
+[2025-09-06 18:39:14] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-06 18:39:14] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-06 18:39:14] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-06 18:39:14] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 18:39:14] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 18:39:26] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"5a5d4441b329635a2c51a6a19a8817512d0e5b95fbe8e11dfe9fdec7cf5e403b"},"get_data":[]}
+[2025-09-06 18:39:26] DEBUG: Database session check failed, using PHP sessions only 
+[2025-09-06 18:39:36] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-06 18:39:36] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-06 18:39:36] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0}
+[2025-09-06 18:39:36] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 18:39:36] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-06 18:40:46] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-06 18:40:46] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-06 18:40:46] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-06 18:40:46] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-06 18:40:46] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-06 18:47:03] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"teach","password":"teach"},"get_data":[]}
+[2025-09-06 18:47:03] DEBUG: Login attempt {"username":"teach"}
+[2025-09-06 18:47:03] DEBUG: User found {"user_id":3,"user_type":"teacher","temp_password":1}
+[2025-09-06 18:47:03] DEBUG: Password verification failed {"username":"teach"}
+[2025-09-06 18:47:28] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"teach","password":"teach"},"get_data":[]}
+[2025-09-06 18:47:28] DEBUG: Login attempt {"username":"teach"}
+[2025-09-06 18:47:28] DEBUG: User found {"user_id":3,"user_type":"teacher","temp_password":1}
+[2025-09-06 18:47:28] DEBUG: Password verification failed {"username":"teach"}
+[2025-09-07 07:15:02] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-07 07:15:02] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-07 07:15:02] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-07 07:15:02] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-07 07:15:02] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-07 18:06:51] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-09-08 11:11:42] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-08 11:11:42] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-08 11:11:42] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-08 11:11:42] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-08 11:11:42] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-08 11:14:40] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-08 11:14:40] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-08 11:14:40] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0}
+[2025-09-08 11:14:40] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-08 11:14:40] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-10 09:19:14] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"taekjoo","password":"taekjooo"},"get_data":[]}
+[2025-09-10 09:19:14] DEBUG: Login attempt {"username":"taekjoo"}
+[2025-09-10 09:19:14] DEBUG: User found {"user_id":59,"user_type":"teacher","temp_password":0}
+[2025-09-10 09:19:14] DEBUG: Password verification failed {"username":"taekjoo"}
+[2025-09-10 09:19:30] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"taekjoo","password":"taekjoooo"},"get_data":[]}
+[2025-09-10 09:19:30] DEBUG: Login attempt {"username":"taekjoo"}
+[2025-09-10 09:19:30] DEBUG: User found {"user_id":59,"user_type":"teacher","temp_password":0}
+[2025-09-10 09:19:30] DEBUG: Password verification failed {"username":"taekjoo"}
+[2025-09-10 09:19:43] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"taekjoo","password":"taekjooo"},"get_data":[]}
+[2025-09-10 09:19:43] DEBUG: Login attempt {"username":"taekjoo"}
+[2025-09-10 09:19:43] DEBUG: User found {"user_id":59,"user_type":"teacher","temp_password":0}
+[2025-09-10 09:19:43] DEBUG: Password verification failed {"username":"taekjoo"}
+[2025-09-10 09:20:20] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"taekjoo","password":"taekjoooo"},"get_data":[]}
+[2025-09-10 09:20:20] DEBUG: Login attempt {"username":"taekjoo"}
+[2025-09-10 09:20:20] DEBUG: User found {"user_id":59,"user_type":"teacher","temp_password":0}
+[2025-09-10 09:20:20] DEBUG: Password verification failed {"username":"taekjoo"}
+[2025-09-10 09:24:36] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"zhenyabogdanov","password":"zhenyabogdanov"},"get_data":[]}
+[2025-09-10 09:24:36] DEBUG: Login attempt {"username":"zhenyabogdanov"}
+[2025-09-10 09:24:36] DEBUG: User not found {"username":"zhenyabogdanov"}
+[2025-09-10 16:00:37] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-10 16:00:37] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-10 16:00:37] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-10 16:00:37] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-10 16:00:37] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-10 16:05:50] DEBUG: Auth request {"method":"POST","post_data":{"action":"register_teacher","id_number":"22L-2239","full_name":"Kwon Chaeyoung","username":"kwonchaeyoung","password":"Kwonchaeyoung1","sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C","Grade 10 - Section A"]},"get_data":[]}
+[2025-09-10 16:32:13] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"kwonchaeyoung","password":"kwonchaeyoung"},"get_data":[]}
+[2025-09-10 16:32:13] DEBUG: Login attempt {"username":"kwonchaeyoung"}
+[2025-09-10 16:32:13] DEBUG: User found {"user_id":60,"user_type":"teacher","temp_password":0}
+[2025-09-10 16:32:13] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-10 16:32:13] DEBUG: Teacher login successful {"teacher_id":60,"sections_count":3,"sections":["Grade 10 - Section A","Grade 10 - Section C","Grade 9 - Section B"]}
+[2025-09-10 16:33:40] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"karrie"},"get_data":[]}
+[2025-09-10 16:33:40] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-10 16:33:40] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1}
+[2025-09-10 16:33:40] DEBUG: Password verification failed {"username":"karrie"}
+[2025-09-10 16:36:08] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"sampleteacheraccount","password":"sampleteacheraccount"},"get_data":[]}
+[2025-09-10 16:36:08] DEBUG: Login attempt {"username":"sampleteacheraccount"}
+[2025-09-10 16:36:08] DEBUG: User found {"user_id":61,"user_type":"teacher","temp_password":0}
+[2025-09-10 16:36:08] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-10 16:36:08] DEBUG: Teacher login successful {"teacher_id":61,"sections_count":3,"sections":["Grade 7 - Section A","Grade 7 - Section C","Grade 8 - Section B"]}
+[2025-09-10 16:44:13] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"b26de23c25cf00a48c2082413e5ad34e5bed799f57c5cafb6bf238ddb64c3959"},"get_data":[]}
+[2025-09-10 16:44:13] DEBUG: Database session check failed, using PHP sessions only 
+[2025-09-10 16:44:20] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-10 16:44:20] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-10 16:44:20] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-10 16:44:20] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-10 16:44:20] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-11 07:37:55] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"kwonchaeyoung","password":"kwonchaeyoung"},"get_data":[]}
+[2025-09-11 07:37:55] DEBUG: Login attempt {"username":"kwonchaeyoung"}
+[2025-09-11 07:37:55] DEBUG: User found {"user_id":60,"user_type":"teacher","temp_password":0}
+[2025-09-11 07:37:55] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-11 07:37:55] DEBUG: Teacher login successful {"teacher_id":60,"sections_count":3,"sections":["Grade 10 - Section A","Grade 10 - Section C","Grade 9 - Section B"]}
+[2025-09-11 07:41:50] DEBUG: Auth request {"method":"GET","post_data":[],"get_data":[]}
+[2025-09-11 08:04:36] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-11 08:04:36] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-11 08:04:36] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-11 08:04:36] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-11 08:04:36] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-12 11:04:26] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-12 11:04:26] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-12 11:04:26] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-12 11:04:26] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-12 11:04:26] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-12 11:15:07] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-12 11:15:07] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-12 11:15:07] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-12 11:15:07] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-12 11:15:37] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-12 11:15:37] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-12 11:15:37] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-12 11:15:38] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-12 11:16:20] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-12 11:16:20] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-12 11:16:20] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0}
+[2025-09-12 11:16:20] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-12 11:16:20] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-12 11:18:25] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-12 11:18:25] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-12 11:18:25] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":0}
+[2025-09-12 11:18:25] DEBUG: Teacher account not active {"username":"reynaldo","user_id":5}
+[2025-09-12 11:18:57] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-12 11:18:57] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-12 11:18:57] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-12 11:18:57] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-12 11:18:57] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-12 11:22:07] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"kimmydora","password":"kimmydora"},"get_data":[]}
+[2025-09-12 11:22:07] DEBUG: Login attempt {"username":"kimmydora"}
+[2025-09-12 11:22:07] DEBUG: User found {"user_id":62,"user_type":"teacher","temp_password":0,"teacher_is_active":0}
+[2025-09-12 11:22:07] DEBUG: Teacher account not active {"username":"kimmydora","user_id":62}
+[2025-09-12 14:29:50] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-12 14:29:50] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-12 14:29:50] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":0}
+[2025-09-12 14:29:50] DEBUG: Teacher account not active {"username":"rachelle","user_id":4}
+[2025-09-12 14:30:08] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-12 14:30:08] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-12 14:30:08] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-12 14:30:09] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-12 14:30:09] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-14 11:08:51] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"FilibusteroTeacher","password":"FilibusteroTeacher"},"get_data":[]}
+[2025-09-14 11:08:59] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"FilibusteroTeacher","password":"FilibusteroTeacher"},"get_data":[]}
+[2025-09-14 11:11:33] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"FilibusteroTeacher","password":"FilibusteroTeacher"},"get_data":[]}
+[2025-09-14 11:11:33] DEBUG: Login attempt {"username":"FilibusteroTeacher"}
+[2025-09-14 11:11:33] DEBUG: User found {"user_id":63,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 11:11:33] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 11:11:33] DEBUG: Teacher login successful {"teacher_id":63,"sections_count":3,"sections":["Grade 10 - Section B","Grade 9 - Section A","Grade 9 - Section C"]}
+[2025-09-14 11:12:32] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-14 11:12:32] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-14 11:12:32] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 11:12:32] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 11:12:32] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-14 11:17:34] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"TeacherMeal","password":"TeacherMeal"},"get_data":[]}
+[2025-09-14 11:17:34] DEBUG: Login attempt {"username":"TeacherMeal"}
+[2025-09-14 11:17:34] DEBUG: User found {"user_id":12,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 11:17:34] DEBUG: Password verification failed {"username":"TeacherMeal"}
+[2025-09-14 11:17:58] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"teachermeal","password":"teachermeal"},"get_data":[]}
+[2025-09-14 11:17:58] DEBUG: Login attempt {"username":"teachermeal"}
+[2025-09-14 11:17:58] DEBUG: User found {"user_id":12,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 11:17:58] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 11:17:58] DEBUG: Teacher login successful {"teacher_id":12,"sections_count":5,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A","Grade 8 - Section B"]}
+[2025-09-14 12:18:32] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-14 12:18:32] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-14 12:18:32] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 12:18:32] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 12:18:32] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-14 12:19:04] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-14 12:19:04] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-14 12:19:04] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 12:19:05] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 12:19:05] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-14 12:34:52] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-14 12:34:52] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-14 12:34:52] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 12:34:52] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 12:34:52] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-14 12:39:11] DEBUG: Auth request {"method":"POST","post_data":{"id_number":"22L-0331","full_name":"SampleTeacherSana","username":"SampleTeacherSana","password":"SampleTeacherSana","confirm_password":"SampleTeacherSana","user_type":"teacher","action":"register_teacher","sections":["Grade 8 - Section A","Grade 8 - Section C","Grade 9 - Section B"]},"get_data":[]}
+[2025-09-14 12:40:41] DEBUG: Auth request {"method":"POST","post_data":{"id_number":"22L-0331","full_name":"SampleTeacherLangSana","username":"SampleTeacherLang","password":"SampleTeacherLang","confirm_password":"SampleTeacherLang","user_type":"teacher","action":"register_teacher","sections":["Grade 7 - Section A","Grade 7 - Section C","Grade 8 - Section B"]},"get_data":[]}
+[2025-09-14 13:14:14] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"KwonChaeyoung","password":"KwonChaeyoung"},"get_data":[]}
+[2025-09-14 13:14:14] DEBUG: Login attempt {"username":"KwonChaeyoung"}
+[2025-09-14 13:14:14] DEBUG: User found {"user_id":70,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 13:14:14] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 13:14:14] DEBUG: Teacher login successful {"teacher_id":70,"sections_count":3,"sections":["Grade 7 - Section B","Grade 8 - Section A","Grade 8 - Section C"]}
+[2025-09-14 13:27:09] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"KimNanjoon","password":"KimNanjoon"},"get_data":[]}
+[2025-09-14 13:27:09] DEBUG: Login attempt {"username":"KimNanjoon"}
+[2025-09-14 13:27:09] DEBUG: User not found {"username":"KimNanjoon"}
+[2025-09-14 13:27:37] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"KimNamjoon","password":"KimNamjoon"},"get_data":[]}
+[2025-09-14 13:27:37] DEBUG: Login attempt {"username":"KimNamjoon"}
+[2025-09-14 13:27:37] DEBUG: User found {"user_id":74,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 13:27:37] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 13:27:37] DEBUG: Teacher login successful {"teacher_id":74,"sections_count":3,"sections":["Grade 7 - Section A","Grade 7 - Section C","Grade 8 - Section B"]}
+[2025-09-14 13:38:20] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-14 13:38:20] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-14 13:38:20] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 13:38:20] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 13:38:20] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-14 13:48:04] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-14 13:48:04] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-14 13:48:04] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 13:48:05] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 13:48:05] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-14 13:50:58] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"72806a509d57ba9edb859363b93dc8f24fe7207274c04de0da552f6c47f90d56"},"get_data":[]}
+[2025-09-14 13:50:58] DEBUG: Database session check failed, using PHP sessions only 
+[2025-09-14 13:51:03] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-14 13:51:03] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-14 13:51:03] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 13:51:03] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 13:51:03] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-14 13:56:29] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"SampleTeacherLangs","password":"SampleTeacherLangs"},"get_data":[]}
+[2025-09-14 13:56:29] DEBUG: Login attempt {"username":"SampleTeacherLangs"}
+[2025-09-14 13:56:29] DEBUG: User found {"user_id":82,"user_type":"teacher","temp_password":0,"teacher_is_active":0}
+[2025-09-14 13:56:29] DEBUG: Teacher account not active {"username":"SampleTeacherLangs","user_id":82}
+[2025-09-14 13:57:12] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"SampleTeacherLangs","password":"SampleTeacherLangs"},"get_data":[]}
+[2025-09-14 13:57:12] DEBUG: Login attempt {"username":"SampleTeacherLangs"}
+[2025-09-14 13:57:12] DEBUG: User found {"user_id":82,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-14 13:57:12] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-14 13:57:12] DEBUG: Teacher login successful {"teacher_id":82,"sections_count":2,"sections":["Grade 10 - Section A","Grade 10 - Section C"]}
+[2025-09-15 03:16:45] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"proframos","password":"proframos"},"get_data":[]}
+[2025-09-15 03:16:45] DEBUG: Login attempt {"username":"proframos"}
+[2025-09-15 03:16:45] DEBUG: User found {"user_id":9,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-15 03:16:45] DEBUG: Password verification failed {"username":"proframos"}
+[2025-09-15 03:17:22] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"teachermeal","password":"teachermeal"},"get_data":[]}
+[2025-09-15 03:17:22] DEBUG: Login attempt {"username":"teachermeal"}
+[2025-09-15 03:17:22] DEBUG: User found {"user_id":12,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-15 03:17:22] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:17:22] DEBUG: Teacher login successful {"teacher_id":12,"sections_count":5,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A","Grade 8 - Section B"]}
+[2025-09-15 03:28:54] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"Visaronovich","password":"Visaronovich"},"get_data":[]}
+[2025-09-15 03:28:54] DEBUG: Login attempt {"username":"Visaronovich"}
+[2025-09-15 03:28:54] DEBUG: User found {"user_id":84,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-15 03:28:54] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:28:54] DEBUG: Teacher login successful {"teacher_id":84,"sections_count":3,"sections":["Grade 10 - Section A","Grade 8 - Section C","Grade 9 - Section B"]}
+[2025-09-15 03:29:34] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-15 03:29:34] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-15 03:29:34] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-15 03:29:34] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:29:34] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-15 03:30:06] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"teachermeal","password":"teachermeal"},"get_data":[]}
+[2025-09-15 03:30:06] DEBUG: Login attempt {"username":"teachermeal"}
+[2025-09-15 03:30:06] DEBUG: User found {"user_id":12,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-15 03:30:06] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:30:06] DEBUG: Teacher login successful {"teacher_id":12,"sections_count":5,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A","Grade 8 - Section B"]}
+[2025-09-15 03:33:43] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-15 03:33:43] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-15 03:33:43] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-15 03:33:43] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:33:43] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-15 03:42:31] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-15 03:42:31] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-15 03:42:31] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-15 03:42:31] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:42:31] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-15 03:42:47] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"karrie"},"get_data":[]}
+[2025-09-15 03:42:47] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-15 03:42:47] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-15 03:42:47] DEBUG: Password verification failed {"username":"karrie"}
+[2025-09-15 03:43:10] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-15 03:43:10] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-15 03:43:10] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-15 03:43:10] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:43:10] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-15 03:52:13] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-15 03:52:13] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-15 03:52:13] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-15 03:52:13] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 03:52:13] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-15 04:03:54] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"29b2841914de154c13748522a91434ab838b06f2dcfa0868142496eb94311c71"},"get_data":[]}
+[2025-09-15 04:03:54] DEBUG: Database session check failed, using PHP sessions only 
+[2025-09-15 04:07:30] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-15 04:07:30] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-15 04:07:30] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-15 04:07:30] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-15 04:07:30] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-16 11:25:30] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-16 11:25:31] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-16 11:25:31] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-16 11:25:31] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-16 11:25:31] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-16 11:35:29] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-16 11:35:29] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-16 11:35:29] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-16 11:35:29] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-16 11:35:29] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-16 11:35:39] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"f990b9b0de1442165bc481f82b625f1c3c05a78e24bf8dd13b14ec0c3a498311"},"get_data":[]}
+[2025-09-17 04:28:36] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-17 04:28:36] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-17 04:28:36] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-17 04:28:36] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-17 04:28:36] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-17 04:28:54] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-17 04:28:54] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-17 04:28:54] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-17 04:28:55] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-17 04:28:55] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-17 08:58:49] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-17 08:58:49] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-17 08:58:50] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-17 08:58:50] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-17 08:58:50] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 06:13:07] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 06:13:07] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 06:13:07] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 06:13:08] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:13:08] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 06:26:12] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"5735936ba84c577ce35fed42f688e24e3eca8f401ca483184658b468aead355c"},"get_data":[]}
+[2025-09-18 06:44:57] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 06:44:57] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 06:44:57] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 06:44:57] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:44:57] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 06:45:25] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"rachelle","password":"rachelle"},"get_data":[]}
+[2025-09-18 06:45:25] DEBUG: Login attempt {"username":"rachelle"}
+[2025-09-18 06:45:25] DEBUG: User found {"user_id":4,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 06:45:25] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:45:25] DEBUG: Teacher login successful {"teacher_id":4,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 06:45:50] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 06:45:50] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 06:45:50] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 06:45:50] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:45:50] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 06:47:19] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 06:47:19] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 06:47:19] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 06:47:19] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:47:19] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 06:47:32] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 06:47:32] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 06:47:32] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 06:47:32] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:47:32] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 06:48:38] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 06:48:38] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 06:48:38] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 06:48:38] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:48:38] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 06:51:22] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 06:51:22] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 06:51:22] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 06:51:22] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 06:51:22] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 06:58:04] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"b3aa80eb6209955e4508efe4a573ec546b12814ac26a84bf4fb9ec75f1860f4c"},"get_data":[]}
+[2025-09-18 06:58:04] DEBUG: Database session check failed, using PHP sessions only 
+[2025-09-18 12:28:32] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 12:28:32] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 12:28:32] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 12:28:32] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 12:28:32] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 12:28:43] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"e0c55ac05850fc20cbd8bbc8ff9d5371476a23370f9f9bf6e0b4d92e120fabea"},"get_data":[]}
+[2025-09-18 12:34:37] DEBUG: Auth request {"method":"POST","post_data":{"action":"verify_session","token":"e0c55ac05850fc20cbd8bbc8ff9d5371476a23370f9f9bf6e0b4d92e120fabea"},"get_data":[]}
+[2025-09-18 12:52:24] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 12:52:24] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 12:52:24] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 12:52:24] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 12:52:24] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 12:53:02] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 12:53:02] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 12:53:02] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 12:53:02] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 12:53:02] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 12:53:09] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"988c7f3fa30763429c153527ddc47b1093cff64ff3ac055f22e24e12f5187e56"},"get_data":[]}
+[2025-09-18 12:59:43] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 12:59:43] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 12:59:43] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 12:59:43] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 12:59:43] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 12:59:49] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"31fb47c78170b0d33b1a5b3f4fabf1e54df559fd1288d39a1728cf84f7cedb9a"},"get_data":[]}
+[2025-09-18 13:00:04] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"31fb47c78170b0d33b1a5b3f4fabf1e54df559fd1288d39a1728cf84f7cedb9a"},"get_data":[]}
+[2025-09-18 13:01:05] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 13:01:05] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 13:01:05] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 13:01:05] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 13:01:05] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 13:01:13] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"07be6db26d902c7f67572db60e39ddace2a6753f70ad53975eb00d9d23d058f5"},"get_data":[]}
+[2025-09-18 13:01:45] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"07be6db26d902c7f67572db60e39ddace2a6753f70ad53975eb00d9d23d058f5","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie"},"get_data":[]}
+[2025-09-18 13:02:01] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"07be6db26d902c7f67572db60e39ddace2a6753f70ad53975eb00d9d23d058f5","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie"},"get_data":[]}
+[2025-09-18 13:08:14] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"07be6db26d902c7f67572db60e39ddace2a6753f70ad53975eb00d9d23d058f5"},"get_data":[]}
+[2025-09-18 13:08:32] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"07be6db26d902c7f67572db60e39ddace2a6753f70ad53975eb00d9d23d058f5","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie"},"get_data":[]}
+[2025-09-18 13:09:24] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"07be6db26d902c7f67572db60e39ddace2a6753f70ad53975eb00d9d23d058f5"},"get_data":[]}
+[2025-09-18 13:09:42] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 13:09:42] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 13:09:42] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 13:09:42] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 13:09:42] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 13:09:48] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"ed598627cb0bb7308fa16aea0c2f9ba906cfe984003dee07946b837f26066cac"},"get_data":[]}
+[2025-09-18 13:11:21] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"karrie"},"get_data":[]}
+[2025-09-18 13:11:21] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 13:11:21] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 13:11:21] DEBUG: Password verification failed {"username":"karrie"}
+[2025-09-18 13:11:26] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 13:11:26] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 13:11:26] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 13:11:27] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 13:11:27] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 13:11:33] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e"},"get_data":[]}
+[2025-09-18 13:11:48] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie"},"get_data":[]}
+[2025-09-18 13:15:54] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e"},"get_data":[]}
+[2025-09-18 13:16:10] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie"},"get_data":[]}
+[2025-09-18 13:16:20] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie123"},"get_data":[]}
+[2025-09-18 13:18:00] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e"},"get_data":[]}
+[2025-09-18 13:18:00] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e"},"get_data":[]}
+[2025-09-18 13:18:01] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e"},"get_data":[]}
+[2025-09-18 13:18:26] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"8723b068b3077bb631c0ee7c95d9717ec586a6cec000c37d14b5bbc2d03e620e","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_username":"karrie","new_full_name":"Karrie ML","new_id_number":"22L-0030","new_password":"karrie"},"get_data":[]}
+[2025-09-18 13:19:38] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"reynaldo","password":"reynaldo"},"get_data":[]}
+[2025-09-18 13:19:38] DEBUG: Login attempt {"username":"reynaldo"}
+[2025-09-18 13:19:38] DEBUG: User found {"user_id":5,"user_type":"teacher","temp_password":0,"teacher_is_active":1}
+[2025-09-18 13:19:38] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 13:19:38] DEBUG: Teacher login successful {"teacher_id":5,"sections_count":3,"sections":["Grade 9 - Section A","Grade 9 - Section B","Grade 9 - Section C"]}
+[2025-09-18 13:19:42] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InJleW5hbGRvIiwiZXhwaXJlcyI6MTc1ODI4MDc3OH0="},"get_data":[]}
+[2025-09-18 13:25:54] DEBUG: Auth request {"method":"POST","post_data":{"action":"login","username":"karrie","password":"temp123"},"get_data":[]}
+[2025-09-18 13:25:54] DEBUG: Login attempt {"username":"karrie"}
+[2025-09-18 13:25:54] DEBUG: User found {"user_id":24,"user_type":"teacher","temp_password":1,"teacher_is_active":1}
+[2025-09-18 13:25:55] DEBUG: Session table not available, using PHP sessions only 
+[2025-09-18 13:25:55] DEBUG: Teacher login successful {"teacher_id":24,"sections_count":4,"sections":["Grade 7 - Section A","Grade 7 - Section B","Grade 7 - Section C","Grade 8 - Section A"]}
+[2025-09-18 13:26:00] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"eyJ1c2VyX2lkIjoyNCwidXNlcm5hbWUiOiJrYXJyaWUiLCJleHBpcmVzIjoxNzU4MjgxMTU1fQ=="},"get_data":[]}
+[2025-09-18 13:26:13] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"eyJ1c2VyX2lkIjoyNCwidXNlcm5hbWUiOiJrYXJyaWUiLCJleHBpcmVzIjoxNzU4MjgxMTU1fQ==","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie"},"get_data":[]}
+[2025-09-18 13:27:01] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"eyJ1c2VyX2lkIjoyNCwidXNlcm5hbWUiOiJrYXJyaWUiLCJleHBpcmVzIjoxNzU4MjgxMTU1fQ=="},"get_data":[]}
+[2025-09-18 13:27:02] DEBUG: Auth request {"method":"POST","post_data":{"action":"get_teacher_sections","token":"eyJ1c2VyX2lkIjoyNCwidXNlcm5hbWUiOiJrYXJyaWUiLCJleHBpcmVzIjoxNzU4MjgxMTU1fQ=="},"get_data":[]}
+[2025-09-18 13:27:14] DEBUG: Auth request {"method":"POST","post_data":{"action":"update_teacher_profile","token":"eyJ1c2VyX2lkIjoyNCwidXNlcm5hbWUiOiJrYXJyaWUiLCJleHBpcmVzIjoxNzU4MjgxMTU1fQ==","current_username":"karrie","current_password":"temp123","id_number":"22L-0030","full_name":"karrie","new_password":"karrie"},"get_data":[]}

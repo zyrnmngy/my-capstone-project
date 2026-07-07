@@ -1,0 +1,2693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filibustero Teacher Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1410 0%, #2d241a 100%);
+            color: #4a4235;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background with scanlines effect */
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                radial-gradient(circle at 10% 20%, rgba(212, 162, 89, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(184, 134, 58, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+            animation: scanlines 8s linear infinite;
+        }
+        
+        @keyframes scanlines {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 4px; }
+        }
+        
+        /* Corner decorations */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            border: 2px solid rgba(212, 162, 89, 0.2);
+            pointer-events: none;
+        }
+        
+        body::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        body::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            padding: 1rem 2rem;
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.4),
+                0 0 80px rgba(212, 162, 89, 0.2),
+                inset 0 0 20px rgba(212, 162, 89, 0.05),
+                0 10px 25px rgba(139, 107, 66, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #d4a259;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #b8863a;
+            letter-spacing: -0.5px;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .welcome-text {
+            font-weight: 600;
+            color: #5a5043;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-toggle {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            border: 2px solid #9c6d2e;
+            color: #fffcf7;
+            padding: 0.6rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 6px 20px rgba(212, 162, 89, 0.4),
+                inset 0 1px 0px rgba(255, 252, 247, 0.3);
+        }
+        
+        .dropdown-toggle:hover {
+            background: linear-gradient(135deg, #b8863a 0%, #9c6d2e 100%);
+            box-shadow: 
+                0 8px 30px rgba(212, 162, 89, 0.6),
+                inset 0 1px 0px rgba(255, 252, 247, 0.5);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            min-width: 220px;
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.4),
+                0 10px 25px rgba(139, 107, 66, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1001;
+            margin-top: 0.5rem;
+        }
+        
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1.2rem;
+            color: #5a5043;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0dfb8;
+            font-weight: 600;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background: #faf6ef;
+            color: #b8863a;
+            box-shadow: inset 0 0 10px rgba(212, 162, 89, 0.2);
+        }
+        
+        .dropdown-item i {
+            color: #b8863a;
+            margin-right: 0.5rem;
+            width: 16px;
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background: #d4a259;
+            margin: 0.5rem 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            padding: 2rem;
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.4),
+                0 0 80px rgba(212, 162, 89, 0.2),
+                inset 0 0 20px rgba(212, 162, 89, 0.05),
+                0 10px 25px rgba(139, 107, 66, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #d4a259, #b8863a, #d4a259);
+            border-radius: 0;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.6),
+                0 8px 30px rgba(212, 162, 89, 0.3),
+                inset 0 0 20px rgba(212, 162, 89, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #fffcf7;
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            box-shadow: 
+                0 6px 20px rgba(212, 162, 89, 0.4),
+                inset 0 1px 0px rgba(255, 252, 247, 0.3);
+            border: 2px solid #fffcf7;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #3d3529;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #b8863a;
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', monospace;
+            text-shadow: 2px 2px 0px rgba(212, 162, 89, 0.3);
+        }
+        
+        .stat-label {
+            color: #7a6f5d;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .section-selector {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.4),
+                0 10px 25px rgba(139, 107, 66, 0.15);
+            position: relative;
+        }
+        
+        .section-selector::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #d4a259, #b8863a, #d4a259);
+            border-radius: 0;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+        
+        /* UPDATED: Section Tabs with Archive Icons */
+        .section-selector-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0 0.5rem;
+        }
+        
+        .section-selector-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #3d3529;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .section-tabs-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .scroll-arrow {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            border: 2px solid #9c6d2e;
+            color: #fffcf7;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            position: absolute;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.4);
+        }
+        
+        .scroll-arrow:hover {
+            background: linear-gradient(135deg, #b8863a 0%, #9c6d2e 100%);
+            transform: scale(1.1);
+        }
+        
+        .scroll-arrow.left {
+            left: 0;
+        }
+        
+        .scroll-arrow.right {
+            right: 0;
+        }
+        
+        .scroll-arrow.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .section-tabs-wrapper {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .section-tabs {
+            display: flex;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+            padding: 0 30px;
+            width: max-content;
+        }
+        
+        .section-tab {
+            background: linear-gradient(135deg, #faf6ef 0%, #f5f1eb 100%);
+            border: 2px solid #d4a259;
+            color: #7a6f5d;
+            padding: 0.7rem 1.2rem;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.1);
+            white-space: nowrap;
+            flex-shrink: 0;
+            position: relative;
+            padding-right: 2.5rem; /* Space for X icon */
+        }
+        
+        .section-tab.active {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            color: #fffcf7;
+            box-shadow: 
+                0 6px 20px rgba(212, 162, 89, 0.4),
+                inset 0 1px 0px rgba(255, 252, 247, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .section-tab:hover:not(.active) {
+            background: linear-gradient(135deg, #f5f0e6 0%, #f0e8db 100%);
+            color: #5a5043;
+            box-shadow: 0 6px 16px rgba(212, 162, 89, 0.2);
+        }
+        
+        /* Archive X Icon */
+        .archive-icon {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
+        }
+        
+        .section-tab:hover .archive-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .archive-icon:hover {
+            background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+            transform: scale(1.1) !important;
+            box-shadow: 0 3px 12px rgba(220, 53, 69, 0.6);
+        }
+        
+        /* Tooltip for archive icon */
+        .archive-tooltip {
+            position: absolute;
+            top: -35px;
+            right: -10px;
+            background: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .archive-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 15px;
+            border-width: 5px 5px 0;
+            border-style: solid;
+            border-color: #333 transparent transparent;
+        }
+        
+        .archive-icon:hover .archive-tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .content-section {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            padding: 2rem;
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.4),
+                0 0 80px rgba(212, 162, 89, 0.2),
+                inset 0 0 20px rgba(212, 162, 89, 0.05),
+                0 10px 25px rgba(139, 107, 66, 0.15);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #d4a259, #b8863a, #d4a259);
+            border-radius: 0;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #3d3529;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(212, 162, 89, 0.2);
+        }
+        
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #faf6ef 0%, #f5f1eb 100%);
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-label {
+            font-weight: 700;
+            color: #5a5043;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        
+        .filter-select {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            color: #5a5043;
+            padding: 0.5rem 1rem;
+            border-radius: 0;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            min-width: 150px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(212, 162, 89, 0.1);
+        }
+        
+        .filter-select:hover {
+            background: linear-gradient(135deg, #f5f0e6 0%, #f0e8db 100%);
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 162, 89, 0.3);
+        }
+        
+        .filter-option {
+            padding: 0.5rem;
+            background: #fffcf7;
+            color: #5a5043;
+        }
+        
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .student-card {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            color: #4a4235;
+            padding: 1.5rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 
+                0 0 20px rgba(212, 162, 89, 0.3),
+                0 6px 16px rgba(139, 107, 66, 0.1);
+        }
+        
+        .student-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #d4a259, #b8863a);
+            border-radius: 0;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .student-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.5),
+                0 12px 30px rgba(212, 162, 89, 0.2);
+        }
+        
+        .student-card:hover::before {
+            opacity: 0.2;
+        }
+        
+        .student-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #b8863a;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .progress-bar {
+            background: #f5f0e6;
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            height: 8px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(212, 162, 89, 0.1);
+        }
+        
+        .progress-fill {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            height: 100%;
+            border-radius: 0;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(212, 162, 89, 0.5);
+        }
+        
+        .student-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #7a6f5d;
+            font-weight: 600;
+        }
+        
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(212, 162, 89, 0.3);
+        }
+        
+        .leaderboard-table th {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            color: #fffcf7;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            border-bottom: 2px solid #9c6d2e;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.2);
+        }
+        
+        .leaderboard-table td {
+            padding: 1rem;
+            border-bottom: 2px solid #d4a259;
+            transition: all 0.2s ease;
+            color: #4a4235;
+            font-weight: 600;
+        }
+        
+        .leaderboard-table tr:hover td {
+            background: #faf6ef;
+            box-shadow: inset 0 0 10px rgba(212, 162, 89, 0.1);
+        }
+        
+        .rank-badge {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            color: #fffcf7;
+            padding: 0.3rem 0.7rem;
+            border-radius: 0;
+            font-weight: 900;
+            font-size: 0.9rem;
+            font-family: 'Orbitron', monospace;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.3);
+            border: 1px solid #9c6d2e;
+        }
+        
+        .rank-badge.silver {
+            background: linear-gradient(135deg, #a39582 0%, #8b7760 100%);
+            border-color: #6d5f4d;
+        }
+        
+        .rank-badge.bronze {
+            background: linear-gradient(135deg, #9c7a4d 0%, #7a6236 100%);
+            border-color: #5a4620;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            font-size: 1.1rem;
+            color: #7a6f5d;
+        }
+        
+        .book-loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .book {
+            position: relative;
+            width: 60px;
+            height: 40px;
+            transform-style: preserve-3d;
+            animation: bookRotate 8s infinite ease-in-out;
+        }
+        
+        .book-page {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: linear-gradient(135deg, #faf6ef 0%, #f5f1eb 100%);
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            transform-origin: left center;
+        }
+        
+        .book-page:nth-child(1) {
+            animation: pageFlip1 8s infinite ease-in-out;
+            z-index: 3;
+        }
+        
+        .book-page:nth-child(2) {
+            animation: pageFlip2 8s infinite ease-in-out 1.2s;
+            z-index: 2;
+            left: 2px;
+        }
+        
+        .book-page:nth-child(3) {
+            animation: pageFlip3 8s infinite ease-in-out 1.6s;
+            z-index: 1;
+            left: 4px;
+        }
+        
+        .book-spine {
+            position: absolute;
+            left: -3px;
+            top: 0;
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            border-radius: 0;
+            box-shadow: -2px 0 8px rgba(212, 162, 89, 0.3);
+        }
+        
+        @keyframes bookRotate {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(-15deg); }
+        }
+        
+        @keyframes pageFlip1 {
+            0%, 30% { transform: rotateY(0deg); }
+            60% { transform: rotateY(-160deg); }
+            90%, 100% { transform: rotateY(-180deg); }
+        }
+        
+        @keyframes pageFlip2 {
+            0%, 30% { transform: rotateY(0deg); }
+            60% { transform: rotateY(-160deg); }
+            90%, 100% { transform: rotateY(-180deg); }
+        }
+        
+        @keyframes pageFlip3 {
+            0%, 30% { transform: rotateY(0deg); }
+            60% { transform: rotateY(-160deg); }
+            90%, 100% { transform: rotateY(-180deg); }
+        }
+        
+        .loading-text {
+            color: #7a6f5d;
+            font-size: 1.1rem;
+            animation: textPulse 8s infinite ease-in-out;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        .error-message {
+            background: linear-gradient(135deg, #fdf5f3 0%, #fce8e1 100%);
+            color: #b36f59;
+            padding: 1rem;
+            border-radius: 0;
+            margin-bottom: 1rem;
+            text-align: center;
+            border: 2px solid #d4a259;
+            border-left: 5px solid #b36f59;
+            font-size: 0.9rem;
+            box-shadow: 0 0 20px rgba(179, 111, 89, 0.2);
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .refresh-btn {
+            background: linear-gradient(135deg, #faf6ef 0%, #f5f1eb 100%);
+            border: 2px solid #d4a259;
+            color: #5a5043;
+            padding: 0.7rem 1.5rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.1);
+        }
+        
+        .refresh-btn:hover {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            color: #fffcf7;
+            border-color: #9c6d2e;
+            box-shadow: 
+                0 6px 20px rgba(212, 162, 89, 0.4),
+                inset 0 1px 0px rgba(255, 252, 247, 0.3);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(58, 47, 35, 0.7);
+            backdrop-filter: blur(3px);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 0;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.4),
+                0 20px 60px rgba(139, 107, 66, 0.2);
+            position: relative;
+        }
+        
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #d4a259, #b8863a, #d4a259);
+            border-radius: 0;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #d4a259 0%, #b8863a 100%);
+            color: #fffcf7;
+            padding: 1.5rem 2rem;
+            border-radius: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #9c6d2e;
+            box-shadow: 0 4px 12px rgba(212, 162, 89, 0.2);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 0;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .close-btn {
+            background: rgba(255, 252, 247, 0.2);
+            border: 2px solid rgba(255, 252, 247, 0.4);
+            color: #fffcf7;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-weight: 700;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 252, 247, 0.3);
+            box-shadow: 0 0 15px rgba(255, 252, 247, 0.5);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+            color: #4a4235;
+        }
+        
+        .student-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .detail-card {
+            background: linear-gradient(135deg, #faf6ef 0%, #f5f1eb 100%);
+            border: 2px solid #d4a259;
+            border-radius: 0;
+            padding: 1.5rem;
+            box-shadow: inset 0 0 10px rgba(212, 162, 89, 0.1);
+        }
+        
+        .detail-card h4 {
+            color: #b8863a;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.3rem 0;
+            border-bottom: 2px solid #d4a259;
+        }
+        
+        .detail-label {
+            font-weight: 700;
+            color: #7a6f5d;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .detail-value {
+            font-weight: 700;
+            color: #b8863a;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+        }
+
+        /* Archived Classes Modal */
+        .archived-classes-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(58, 47, 35, 0.7);
+            backdrop-filter: blur(3px);
+        }
+        
+        .archived-classes-content {
+            background: linear-gradient(135deg, #fffcf7 0%, #f9f5ed 100%);
+            border: 2px solid #d4a259;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 0;
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 
+                0 0 40px rgba(212, 162, 89, 0.4),
+                0 20px 60px rgba(139, 107, 66, 0.2);
+            position: relative;
+        }
+        
+        .archived-classes-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #d4a259, #b8863a, #d4a259);
+            border-radius: 0;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+        
+        .archived-classes-header {
+            background: linear-gradient(135deg, #6c757d 0%, #545b62 100%);
+            color: #fffcf7;
+            padding: 1.5rem 2rem;
+            border-radius: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #495057;
+            box-shadow: 0 4px 12px rgba(108, 117, 125, 0.2);
+        }
+        
+        .archived-classes-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin: 0;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .archived-classes-body {
+            padding: 2rem;
+            color: #4a4235;
+        }
+        
+        .archived-sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .archived-section-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px dashed #6c757d;
+            border-radius: 0;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .archived-section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 117, 125, 0.2);
+            border-style: solid;
+            border-color: #d4a259;
+        }
+        
+        .archived-section-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #6c757d;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .archived-section-name i {
+            color: #d4a259;
+        }
+        
+        .archived-section-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .archived-stat {
+            text-align: center;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid #dee2e6;
+            border-radius: 0;
+        }
+        
+        .archived-stat-value {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #6c757d;
+            font-family: 'Orbitron', monospace;
+            margin-bottom: 0.3rem;
+        }
+        
+        .archived-stat-label {
+            font-size: 0.8rem;
+            color: #868e96;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .restore-section-btn {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            border: 2px solid #1e7e34;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+        
+        .restore-section-btn:hover {
+            background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+        }
+        
+        .archived-students-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #6c757d;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(108, 117, 125, 0.1);
+            margin-top: 2rem;
+        }
+        
+        .archived-students-table th {
+            background: linear-gradient(135deg, #6c757d 0%, #545b62 100%);
+            color: #fffcf7;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            border-bottom: 2px solid #495057;
+        }
+        
+        .archived-students-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #dee2e6;
+            color: #495057;
+            font-weight: 600;
+        }
+        
+        .archived-students-table tr:hover td {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+    @media (max-width: 1200px) and (min-width: 769px) {
+        .students-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .archived-sections-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 480px) and (max-width: 768px) {
+        .students-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .archived-sections-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Animation for page entrance */
+    .container {
+        animation: fadeInUp 1.2s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+        /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem;
+            margin: 1rem auto;
+        }
+        
+        .nav-content {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 0.5rem 0;
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            text-align: center;
+        }
+        
+        .header-actions {
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .welcome-text {
+            font-size: 0.8rem;
+        }
+        
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .stats-card {
+            padding: 1.5rem;
+        }
+        
+        .card-header {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .stat-label {
+            text-align: center;
+        }
+        
+        .section-tabs {
+            padding: 0 25px;
+        }
+        
+        .scroll-arrow {
+            width: 25px;
+            height: 25px;
+        }
+        
+        .section-tab {
+            padding: 0.6rem 1rem;
+            font-size: 0.8rem;
+            padding-right: 2rem;
+        }
+        
+        .archive-icon {
+            width: 18px;
+            height: 18px;
+            font-size: 9px;
+        }
+        
+        .filter-controls {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.8rem;
+        }
+        
+        .filter-group {
+            justify-content: space-between;
+        }
+        
+        .filter-select {
+            min-width: 120px;
+            flex-grow: 1;
+        }
+        
+        .content-section {
+            padding: 1.5rem;
+        }
+        
+        .section-title {
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        .students-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .student-card {
+            padding: 1rem;
+        }
+        
+        .student-stats {
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+        
+        .leaderboard-table {
+            display: block;
+            overflow-x: auto;
+        }
+        
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .modal-content,
+        .archived-classes-content {
+            width: 95%;
+            margin: 10% auto;
+        }
+        
+        .student-detail-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .detail-card {
+            padding: 1rem;
+        }
+        
+        .dropdown-menu {
+            position: fixed;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            min-width: auto;
+        }
+        
+        /* Fix for corner decorations on mobile */
+        body::before,
+        body::after {
+            width: 80px;
+            height: 80px;
+        }
+        
+        body::before {
+            top: 10px;
+            left: 10px;
+        }
+        
+        body::after {
+            bottom: 10px;
+            right: 10px;
+        }
+    }
+    
+    /* Tablet-specific adjustments */
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .students-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .container {
+            padding: 0 1.5rem;
+        }
+        
+        .dashboard-grid {
+            gap: 1.5rem;
+        }
+        
+        .section-tabs {
+            max-width: 100%;
+        }
+        
+        .archived-sections-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    /* Small mobile devices */
+    @media (max-width: 480px) {
+        .logo {
+            font-size: 1.2rem;
+        }
+        
+        .stats-card {
+            padding: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+        }
+        
+        .content-section {
+            padding: 1rem;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+        }
+        
+        .student-name {
+            font-size: 1rem;
+        }
+        
+        .modal-header,
+        .archived-classes-header {
+            padding: 1rem;
+        }
+        
+        .modal-title,
+        .archived-classes-title {
+            font-size: 1.2rem;
+        }
+        
+        .modal-body,
+        .archived-classes-body {
+            padding: 1rem;
+        }
+        
+        .section-tabs {
+            padding: 0 20px;
+        }
+        
+        .section-tab {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.75rem;
+            padding-right: 1.8rem;
+        }
+        
+        .archive-icon {
+            width: 16px;
+            height: 16px;
+            font-size: 8px;
+            top: -4px;
+            right: -4px;
+        }
+        
+        .archived-sections-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .archived-section-stats {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    /* Fix for landscape orientation on mobile */
+    @media (max-height: 500px) and (max-width: 768px) {
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+        
+        .container {
+            margin: 1rem auto;
+        }
+        
+        .content-section {
+            margin-bottom: 1rem;
+        }
+    }
+        
+    /* Mobile Leaderboard Fix with Proper Horizontal Scrolling */
+    @media (max-width: 768px) {
+        .leaderboard-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -1rem;
+            padding: 0 1rem;
+            width: calc(100% + 2rem);
+        }
+        
+        .leaderboard-table {
+            min-width: 700px;
+            width: 100%;
+        }
+        
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 0.8rem 0.8rem;
+            font-size: 0.85rem;
+        }
+        
+        .leaderboard-table th:nth-child(2),
+        .leaderboard-table td:nth-child(2) {
+            min-width: 150px;
+            max-width: 200px;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        
+        .leaderboard-table th:nth-child(1),
+        .leaderboard-table td:nth-child(1) {
+            min-width: 80px;
+        }
+        
+        .leaderboard-table th:nth-child(3),
+        .leaderboard-table td:nth-child(3) {
+            min-width: 100px;
+        }
+        
+        .leaderboard-table th:nth-child(4),
+        .leaderboard-table td:nth-child(4) {
+            min-width: 80px;
+        }
+        
+        .leaderboard-table th:nth-child(5),
+        .leaderboard-table td:nth-child(5) {
+            min-width: 90px;
+        }
+        
+        .leaderboard-table th:nth-child(6),
+        .leaderboard-table td:nth-child(6) {
+            min-width: 80px;
+        }
+        
+        .leaderboard-table th:nth-child(7),
+        .leaderboard-table td:nth-child(7) {
+            min-width: 120px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .leaderboard-container {
+            margin: 0 -0.5rem;
+            padding: 0 0.5rem;
+            width: calc(100% + 1rem);
+        }
+        
+        .leaderboard-table {
+            min-width: 650px;
+        }
+        
+        .leaderboard-table th,
+        .leaderboard-table td {
+            padding: 0.6rem 0.5rem;
+            font-size: 0.8rem;
+        }
+        
+        .leaderboard-table th:nth-child(2),
+        .leaderboard-table td:nth-child(2) {
+            min-width: 130px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="background-texture"></div>
+    
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo"> Filibustero Teacher Dashboard</div>
+            <div class="header-actions">
+                <span class="welcome-text" id="welcomeText">Welcome, Teacher</span>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown()">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="teacher_profile.html" class="dropdown-item">
+                            <i class="fas fa-user-edit"></i>Edit Profile
+                        </a>
+                        <a href="#" class="dropdown-item" onclick="showArchivedClasses()">
+                            <i class="fas fa-archive"></i>Archived Classes
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" onclick="handleLogout()">
+                            <i class="fas fa-sign-out-alt"></i>Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Dashboard Overview -->
+        <div class="dashboard-grid">
+            <div class="stats-card">
+                <div class="card-header">
+                    <div class="card-icon">👥</div>
+                    <div class="card-title">Total Students</div>
+                </div>
+                <div class="stat-number" id="totalStudents">0</div>
+                <div class="stat-label">In current section</div>
+            </div>
+
+            <div class="stats-card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title">Average Progress</div>
+                </div>
+                <div class="stat-number" id="avgProgress">0%</div>
+                <div class="stat-label">Story completion</div>
+            </div>
+        </div>
+
+        <!-- UPDATED: Section Selector with Archive Icons -->
+        <div class="section-selector">
+            <div class="section-selector-header">
+                <div class="section-selector-title">📚 Active Sections</div>
+            </div>
+            
+            <div class="section-tabs-container">
+                <div class="scroll-arrow left hidden" onclick="scrollSections('left')">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                
+                <div class="section-tabs-wrapper">
+                    <div class="section-tabs" id="sectionTabs">
+                        <!-- Sections will be loaded dynamically -->
+                    </div>
+                </div>
+                
+                <div class="scroll-arrow right hidden" onclick="scrollSections('right')">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Progress Section with Filter Controls -->
+        <div class="content-section">
+            <div class="section-title">
+                📈 Student Progress
+                <button class="refresh-btn" onclick="loadStudentData()">🔄 Refresh</button>
+            </div>
+            
+            <!-- Filter Controls -->
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <span class="filter-label">Sort by:</span>
+                    <select class="filter-select" id="sortBy" onchange="applyFilters()">
+                        <option class="filter-option" value="name_asc">Name (A-Z)</option>
+                        <option class="filter-option" value="name_desc">Name (Z-A)</option>
+                        <option class="filter-option" value="progress_desc">Progress (High to Low)</option>
+                        <option class="filter-option" value="progress_asc">Progress (Low to High)</option>
+                        <option class="filter-option" value="score_desc">Score (High to Low)</option>
+                        <option class="filter-option" value="score_asc">Score (Low to High)</option>
+                        <option class="filter-option" value="last_played_desc">Last Played (Recent)</option>
+                        <option class="filter-option" value="last_played_asc">Last Played (Oldest)</option>
+                        <option class="filter-option" value="stage_desc">Stage (High to Low)</option>
+                        <option class="filter-option" value="stage_asc">Stage (Low to High)</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <span class="filter-label">Filter by:</span>
+                    <select class="filter-select" id="filterBy" onchange="applyFilters()">
+                        <option class="filter-option" value="all">All Students</option>
+                        <option class="filter-option" value="active">Active (Last 30 days)</option>
+                        <option class="filter-option" value="inactive">Inactive (30+ days)</option>
+                        <option class="filter-option" value="high_progress">High Progress (75%+)</option>
+                        <option class="filter-option" value="low_progress">Low Progress (25% or less)</option>
+                        <option class="filter-option" value="no_progress">No Progress</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="studentsContainer" class="loading">
+                <div class="book-loader">
+                    <div class="book">
+                        <div class="book-spine"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                    </div>
+                    <span class="loading-text">Loading student data...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Section -->
+        <div class="content-section">
+            <div class="section-title">🏆 Section Leaderboard</div>
+            <div id="leaderboardContainer" class="loading">
+                <div class="book-loader">
+                    <div class="book">
+                        <div class="book-spine"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                    </div>
+                    <span class="loading-text">Loading leaderboard...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Detail Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Student Details</h3>
+                <button class="close-btn" onclick="closeStudentModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Student details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Archived Classes Modal -->
+    <div id="archivedClassesModal" class="archived-classes-modal">
+        <div class="archived-classes-content">
+            <div class="archived-classes-header">
+                <h3 class="archived-classes-title">
+                    <i class="fas fa-archive"></i> Archived Classes
+                </h3>
+                <button class="close-btn" onclick="closeArchivedClassesModal()">&times;</button>
+            </div>
+            <div class="archived-classes-body" id="archivedClassesBody">
+                <!-- Archived classes will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentTeacher = null;
+        let currentSection = null;
+        let allStudentData = [];
+        let refreshInterval = null;
+        let currentSectionScroll = 0;
+        let allSections = [];
+        let archivedSections = [];
+
+        // API Configuration
+        const API_ENDPOINTS = {
+            teacherSections: 'https://filibustero-web.com/php/get_teacher_sections.php',
+            archivedSections: 'https://filibustero-web.com/php/get_archived_sections.php',
+            studentsBySection: 'https://filibustero-web.com/php/get_students_by_section.php',
+            studentDetails: 'https://filibustero-web.com/php/get_student_details.php',
+            leaderboard: 'https://filibustero-web.com/php/get_leaderboard.php',
+            archiveSection: 'https://filibustero-web.com/php/archive_section.php',
+            restoreSection: 'https://filibustero-web.com/php/restore_section.php'
+        };
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            updateWelcomeText();
+            addAuthProtection();
+            initializeDashboard();
+            updateScrollArrows();
+        });
+
+        // Dropdown functionality
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            
+            if (!dropdown.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+            
+            // Close modals when clicking outside
+            const studentModal = document.getElementById('studentModal');
+            if (event.target === studentModal) {
+                closeStudentModal();
+            }
+            
+            const archivedModal = document.getElementById('archivedClassesModal');
+            if (event.target === archivedModal) {
+                closeArchivedClassesModal();
+            }
+        });
+
+        // Update welcome text with user's name
+        function updateWelcomeText() {
+            const user = window.FilibusteroAuth ? window.FilibusteroAuth.getCurrentUser() : null;
+            if (user) {
+                document.getElementById('welcomeText').textContent = `Welcome, ${user.full_name}`;
+            }
+        }
+
+        function handleLogout() {
+            if (confirm('Are you sure you want to logout?')) {
+                performLogout();
+            }
+        }
+        
+        function performLogout() {
+            stopAutoRefresh();
+            localStorage.removeItem('filibustero_teacher_auth');
+            localStorage.setItem('filibustero_logout_time', Date.now().toString());
+            sessionStorage.clear();
+            window.location.replace('index.html');
+        }
+
+        function addAuthProtection() {
+            function checkAuthStatus() {
+                const authData = getAuthData();
+                const logoutTime = localStorage.getItem('filibustero_logout_time');
+                
+                if (logoutTime && (Date.now() - parseInt(logoutTime)) < 300000) {
+                    localStorage.removeItem('filibustero_logout_time');
+                    window.location.replace('index.html');
+                    return false;
+                }
+                
+                if (!authData) {
+                    window.location.replace('index.html');
+                    return false;
+                }
+                
+                return true;
+            }
+            
+            if (!checkAuthStatus()) return;
+            
+            window.addEventListener('popstate', function() {
+                if (!checkAuthStatus()) history.forward();
+            });
+            
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                    if (!checkAuthStatus()) history.forward();
+                }
+            });
+        }
+
+        async function initializeDashboard() {
+            try {
+                const authData = getAuthData();
+                if (!authData) {
+                    showError('Please login first');
+                    setTimeout(() => window.location.href = 'index.html', 2000);
+                    return;
+                }
+
+                if (!authData.user || authData.user.user_type !== 'teacher') {
+                    showError('Access denied - teacher account required');
+                    setTimeout(() => window.location.href = 'index.html', 2000);
+                    return;
+                }
+
+                currentTeacher = authData.user;
+                
+                if (!currentTeacher.id) {
+                    showError('Teacher ID not found. Please login again.');
+                    setTimeout(() => window.location.href = 'index.html', 2000);
+                    return;
+                }
+                
+                displayTeacherInfo();
+                await loadTeacherSections();
+                startAutoRefresh();
+            } catch (error) {
+                console.error('Dashboard initialization error:', error);
+                showError('Failed to initialize dashboard: ' + error.message);
+            }
+        }
+
+        function getAuthData() {
+            const savedAuth = localStorage.getItem('filibustero_teacher_auth');
+            if (!savedAuth) return null;
+            
+            try {
+                const authData = JSON.parse(savedAuth);
+                if (authData.expires > Date.now()) {
+                    return authData;
+                }
+            } catch (e) {
+                localStorage.removeItem('filibustero_teacher_auth');
+            }
+            
+            return null;
+        }
+
+        function displayTeacherInfo() {
+            if (currentTeacher) {
+                document.getElementById('welcomeText').textContent = `Welcome, ${currentTeacher.full_name}`;
+            }
+        }
+
+        async function loadTeacherSections() {
+            try {
+                const formData = new FormData();
+                formData.append('teacher_id', currentTeacher.id);
+                // Only load active sections by default
+                formData.append('include_archived', false);
+
+                const response = await fetch(API_ENDPOINTS.teacherSections, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const data = await response.json();
+                if (!data.success) throw new Error(data.error || 'Failed to load sections');
+
+                allSections = data.sections || [];
+                displaySectionTabs(allSections);
+                
+            } catch (error) {
+                console.error('Error loading sections:', error);
+                showError('Failed to load teacher sections: ' + error.message);
+            }
+        }
+
+        function displaySectionTabs(sections) {
+            const sectionsContainer = document.getElementById('sectionTabs');
+            sectionsContainer.innerHTML = '';
+            
+            // Add "All Sections" tab
+            const allTab = document.createElement('div');
+            allTab.className = 'section-tab active';
+            allTab.textContent = 'All Sections';
+            allTab.onclick = () => selectSection(null, allTab);
+            sectionsContainer.appendChild(allTab);
+            
+            // Add individual section tabs with archive icons
+            sections.forEach(sectionData => {
+                const tab = document.createElement('div');
+                tab.className = 'section-tab';
+                tab.textContent = `${sectionData.section} (${sectionData.student_count})`;
+                tab.dataset.section = sectionData.section;
+                tab.onclick = (e) => {
+                    if (!e.target.closest('.archive-icon')) {
+                        selectSection(sectionData.section, tab);
+                    }
+                };
+                
+                // Add archive icon (X mark)
+                const archiveIcon = document.createElement('div');
+                archiveIcon.className = 'archive-icon';
+                archiveIcon.title = 'Click to archive this section';
+                archiveIcon.innerHTML = '×';
+                
+                // Add tooltip
+                const tooltip = document.createElement('div');
+                tooltip.className = 'archive-tooltip';
+                tooltip.textContent = 'Archive this section';
+                archiveIcon.appendChild(tooltip);
+                
+                archiveIcon.onclick = (e) => {
+                    e.stopPropagation();
+                    archiveSection(sectionData.section);
+                };
+                
+                tab.appendChild(archiveIcon);
+                sectionsContainer.appendChild(tab);
+            });
+            
+            updateScrollArrows();
+            
+            if (sections.length > 0) {
+                loadStudentData();
+                loadLeaderboard();
+            }
+        }
+
+        function scrollSections(direction) {
+            const tabsContainer = document.getElementById('sectionTabs');
+            const containerWidth = tabsContainer.parentElement.clientWidth;
+            const tabsWidth = tabsContainer.scrollWidth;
+            const scrollAmount = 200;
+            
+            if (direction === 'left') {
+                currentSectionScroll = Math.max(0, currentSectionScroll - scrollAmount);
+            } else {
+                currentSectionScroll = Math.min(tabsWidth - containerWidth, currentSectionScroll + scrollAmount);
+            }
+            
+            tabsContainer.style.transform = `translateX(-${currentSectionScroll}px)`;
+            updateScrollArrows();
+        }
+
+        function updateScrollArrows() {
+            const tabsContainer = document.getElementById('sectionTabs');
+            const containerWidth = tabsContainer.parentElement.clientWidth;
+            const tabsWidth = tabsContainer.scrollWidth;
+            const leftArrow = document.querySelector('.scroll-arrow.left');
+            const rightArrow = document.querySelector('.scroll-arrow.right');
+            
+            if (tabsWidth <= containerWidth) {
+                leftArrow.classList.add('hidden');
+                rightArrow.classList.add('hidden');
+            } else {
+                leftArrow.classList.toggle('hidden', currentSectionScroll === 0);
+                rightArrow.classList.toggle('hidden', currentSectionScroll >= tabsWidth - containerWidth - 10);
+            }
+        }
+
+        async function archiveSection(sectionName) {
+            if (!confirm(`Archive "${sectionName}"?\n\nThis will hide the section from the main view but preserve all student data and progress.\n\nYou can access archived sections from the "Archived Classes" menu.`)) {
+                return;
+            }
+            
+            try {
+                const formData = new FormData();
+                formData.append('section', sectionName);
+                formData.append('teacher_id', currentTeacher.id);
+
+                const response = await fetch(API_ENDPOINTS.archiveSection, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const data = await response.json();
+                if (!data.success) throw new Error(data.error || 'Failed to archive section');
+                
+                showSuccess(`Section "${sectionName}" has been archived.`);
+                await loadTeacherSections();
+                
+            } catch (error) {
+                console.error('Error archiving section:', error);
+                showError('Failed to archive section: ' + error.message);
+            }
+        }
+
+        async function restoreSection(sectionName) {
+            try {
+                const formData = new FormData();
+                formData.append('section', sectionName);
+                formData.append('teacher_id', currentTeacher.id);
+
+                const response = await fetch(API_ENDPOINTS.restoreSection, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const data = await response.json();
+                if (!data.success) throw new Error(data.error || 'Failed to restore section');
+                
+                showSuccess(`Section "${sectionName}" has been restored.`);
+                closeArchivedClassesModal();
+                await loadTeacherSections();
+                
+            } catch (error) {
+                console.error('Error restoring section:', error);
+                showError('Failed to restore section: ' + error.message);
+            }
+        }
+
+        function selectSection(section, tabElement) {
+            document.querySelectorAll('.section-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            tabElement.classList.add('active');
+            
+            currentSection = section;
+            loadStudentData();
+            loadLeaderboard();
+        }
+
+        async function showArchivedClasses() {
+            const modal = document.getElementById('archivedClassesModal');
+            const modalBody = document.getElementById('archivedClassesBody');
+            
+            modalBody.innerHTML = '<div class="loading"><div class="book-loader"></div>Loading archived classes...</div>';
+            modal.style.display = 'block';
+            
+            try {
+                const formData = new FormData();
+                formData.append('teacher_id', currentTeacher.id);
+                formData.append('include_archived', true);
+
+                const response = await fetch(API_ENDPOINTS.teacherSections, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const data = await response.json();
+                if (!data.success) throw new Error(data.error || 'Failed to load archived sections');
+
+                const archivedSections = data.sections.filter(s => s.is_archived === 1);
+                
+                if (archivedSections.length === 0) {
+                    modalBody.innerHTML = `
+                        <div style="text-align: center; padding: 3rem;">
+                            <i class="fas fa-archive" style="font-size: 3rem; color: #6c757d; margin-bottom: 1rem;"></i>
+                            <h3 style="color: #6c757d; margin-bottom: 1rem;">No Archived Classes</h3>
+                            <p style="color: #868e96;">You haven't archived any classes yet.</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Load student data for each archived section to get stats
+                const sectionPromises = archivedSections.map(async (section) => {
+                    const studentFormData = new FormData();
+                    studentFormData.append('section', section.section);
+                    
+                    try {
+                        const studentResponse = await fetch(API_ENDPOINTS.studentsBySection, {
+                            method: 'POST',
+                            body: studentFormData
+                        });
+                        
+                        if (studentResponse.ok) {
+                            const studentData = await studentResponse.json();
+                            if (studentData.success) {
+                                const students = studentData.students || [];
+                                const totalStudents = students.length;
+                                const avgProgress = students.length > 0 ? 
+                                    Math.round(students.reduce((sum, s) => sum + (parseFloat(s.progress_percentage) || 0), 0) / students.length) : 0;
+                                const totalScore = students.reduce((sum, s) => sum + (parseInt(s.score) || 0), 0);
+                                const lastActive = students.length > 0 ? 
+                                    new Date(Math.max(...students.filter(s => s.last_played).map(s => new Date(s.last_played).getTime()))) : null;
+                                
+                                return {
+                                    ...section,
+                                    students: students,
+                                    totalStudents: totalStudents,
+                                    avgProgress: avgProgress,
+                                    totalScore: totalScore,
+                                    lastActive: lastActive
+                                };
+                            }
+                        }
+                    } catch (e) {
+                        console.error(`Error loading students for section ${section.section}:`, e);
+                    }
+                    
+                    return {
+                        ...section,
+                        students: [],
+                        totalStudents: 0,
+                        avgProgress: 0,
+                        totalScore: 0,
+                        lastActive: null
+                    };
+                });
+                
+                const sectionsWithData = await Promise.all(sectionPromises);
+                
+                // Display archived sections
+                let archivedHTML = `
+                    <div class="archived-sections-grid">
+                        ${sectionsWithData.map(section => `
+                            <div class="archived-section-card">
+                                <div class="archived-section-name">
+                                    <i class="fas fa-folder"></i> ${section.section}
+                                </div>
+                                <div class="archived-section-stats">
+                                    <div class="archived-stat">
+                                        <div class="archived-stat-value">${section.totalStudents}</div>
+                                        <div class="archived-stat-label">Students</div>
+                                    </div>
+                                    <div class="archived-stat">
+                                        <div class="archived-stat-value">${section.avgProgress}%</div>
+                                        <div class="archived-stat-label">Avg Progress</div>
+                                    </div>
+                                    <div class="archived-stat">
+                                        <div class="archived-stat-value">${section.totalScore}</div>
+                                        <div class="archived-stat-label">Total Score</div>
+                                    </div>
+                                    <div class="archived-stat">
+                                        <div class="archived-stat-value">${section.lastActive ? section.lastActive.toLocaleDateString() : 'N/A'}</div>
+                                        <div class="archived-stat-label">Last Active</div>
+                                    </div>
+                                </div>
+                                <button class="restore-section-btn" onclick="restoreSection('${section.section.replace(/'/g, "\\'")}')">
+                                    <i class="fas fa-history"></i> Restore Section
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                modalBody.innerHTML = archivedHTML;
+                
+            } catch (error) {
+                console.error('Error loading archived classes:', error);
+                modalBody.innerHTML = `<div class="error-message">Error loading archived classes: ${error.message}</div>`;
+            }
+        }
+
+        function closeArchivedClassesModal() {
+            document.getElementById('archivedClassesModal').style.display = 'none';
+        }
+
+        async function loadStudentData() {
+            const container = document.getElementById('studentsContainer');
+            container.innerHTML = `<div class="loading">
+                <div class="book-loader">
+                    <div class="book">
+                        <div class="book-spine"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                    </div>
+                    <span class="loading-text">Loading student data...</span>
+                </div>
+            </div>`;
+            
+            try {
+                let allStudents = [];
+                
+                if (currentSection) {
+                    const formData = new FormData();
+                    formData.append('section', currentSection);
+
+                    const response = await fetch(API_ENDPOINTS.studentsBySection, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                    const data = await response.json();
+                    if (!data.success) throw new Error(data.error || 'Failed to load student data');
+
+                    allStudents = data.students || [];
+                } else {
+                    const formData = new FormData();
+                    formData.append('teacher_id', currentTeacher.id);
+                    formData.append('include_archived', false);
+
+                    const sectionsResponse = await fetch(API_ENDPOINTS.teacherSections, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!sectionsResponse.ok) throw new Error(`HTTP error! status: ${sectionsResponse.status}`);
+
+                    const sectionsData = await sectionsResponse.json();
+                    if (!sectionsData.success) throw new Error(sectionsData.error || 'Failed to load sections');
+
+                    const activeSections = sectionsData.sections.filter(s => !s.is_archived || s.is_archived === 0);
+                    const studentPromises = activeSections.map(async (sectionData) => {
+                        const formData = new FormData();
+                        formData.append('section', sectionData.section);
+
+                        const response = await fetch(API_ENDPOINTS.studentsBySection, {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            return data.success ? data.students || [] : [];
+                        }
+                        return [];
+                    });
+
+                    const studentsArrays = await Promise.all(studentPromises);
+                    allStudents = studentsArrays.flat();
+                }
+                
+                allStudentData = allStudents;
+                applyFilters();
+                updateDashboardStats(allStudents);
+                
+            } catch (error) {
+                console.error('Error loading student data:', error);
+                container.innerHTML = `<div class="error-message">Error: ${error.message}</div>`;
+            }
+        }
+
+        function applyFilters() {
+            if (!allStudentData || allStudentData.length === 0) return;
+            
+            const sortBy = document.getElementById('sortBy').value;
+            const filterBy = document.getElementById('filterBy').value;
+            
+            let filteredStudents = [...allStudentData];
+            
+            if (filterBy !== 'all') {
+                const now = new Date();
+                const thirtyDaysAgo = new Date(now.getTime() - (30 * 24 * 60 * 60 * 1000));
+                
+                filteredStudents = filteredStudents.filter(student => {
+                    const lastPlayed = student.last_played ? new Date(student.last_played) : null;
+                    const progress = parseFloat(student.progress_percentage) || 0;
+                    
+                    switch(filterBy) {
+                        case 'active': return lastPlayed && lastPlayed >= thirtyDaysAgo;
+                        case 'inactive': return !lastPlayed || lastPlayed < thirtyDaysAgo;
+                        case 'high_progress': return progress >= 75;
+                        case 'low_progress': return progress <= 25;
+                        case 'no_progress': return progress === 0;
+                        default: return true;
+                    }
+                });
+            }
+            
+            filteredStudents.sort((a, b) => {
+                const nameA = a.full_name.toLowerCase();
+                const nameB = b.full_name.toLowerCase();
+                const progressA = parseFloat(a.progress_percentage) || 0;
+                const progressB = parseFloat(b.progress_percentage) || 0;
+                const scoreA = parseInt(a.score) || 0;
+                const scoreB = parseInt(b.score) || 0;
+                const stageA = parseInt(a.current_stage) || 0;
+                const stageB = parseInt(b.current_stage) || 0;
+                const lastPlayedA = a.last_played ? new Date(a.last_played) : new Date(0);
+                const lastPlayedB = b.last_played ? new Date(b.last_played) : new Date(0);
+                
+                switch(sortBy) {
+                    case 'name_asc': return nameA.localeCompare(nameB);
+                    case 'name_desc': return nameB.localeCompare(nameA);
+                    case 'progress_desc': return progressB - progressA;
+                    case 'progress_asc': return progressA - progressB;
+                    case 'score_desc': return scoreB - scoreA;
+                    case 'score_asc': return scoreA - scoreB;
+                    case 'last_played_desc': return lastPlayedB - lastPlayedA;
+                    case 'last_played_asc': return lastPlayedA - lastPlayedB;
+                    case 'stage_desc': return stageB - stageA;
+                    case 'stage_asc': return stageA - stageB;
+                    default: return 0;
+                }
+            });
+            
+            displayStudents(filteredStudents);
+        }
+
+        function updateDashboardStats(students) {
+            const totalStudents = students.length;
+            const avgProgress = students.length > 0 
+                ? Math.round(students.reduce((sum, s) => sum + (parseFloat(s.progress_percentage) || 0), 0) / students.length)
+                : 0;
+            
+            document.getElementById('totalStudents').textContent = totalStudents;
+            document.getElementById('avgProgress').textContent = avgProgress + '%';
+        }
+
+        function displayStudents(students) {
+            const container = document.getElementById('studentsContainer');
+            
+            if (students.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #64748b; padding: 2rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);">No students found for this section.</div>';
+                return;
+            }
+            
+            let studentsHTML = '<div class="students-grid">';
+            
+            students.forEach((student, index) => {
+                const lastPlayed = student.last_played ? new Date(student.last_played) : null;
+                const isInactive = lastPlayed ? (Date.now() - lastPlayed.getTime()) > (30 * 24 * 60 * 60 * 1000) : true;
+                
+                studentsHTML += `
+                    <div class="student-card ${isInactive ? 'inactive' : ''}" onclick="showStudentDetails(${student.user_id})">
+                        ${isInactive ? '<div style="position: absolute; top: 5px; right: 5px; background: #dc3545; color: white; padding: 2px 8px; font-size: 0.7rem; font-weight: bold;">INACTIVE</div>' : ''}
+                        <div class="student-name">${student.full_name}</div>
+                        <div style="font-size: 0.9rem; margin-bottom: 1rem; color: #64748b;">Section: ${student.section}</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${student.progress_percentage || 0}%"></div>
+                        </div>
+                        <div style="text-align: center; margin-bottom: 1rem; color: #64748b;">${student.progress_percentage || 0}% Complete</div>
+                        <div class="student-stats">
+                            <div><strong>Score:</strong> ${student.score || 0}</div>
+                            <div><strong>Stage:</strong> ${student.current_stage || 1}/29</div>
+                            <div><strong>Coins:</strong> ${student.coins || 0}</div>
+                        </div>
+                        <div class="student-stats" style="margin-top: 0.5rem;">
+                            <div><strong>Last Played:</strong> ${lastPlayed ? lastPlayed.toLocaleDateString() : 'Never'}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            studentsHTML += '</div>';
+            container.innerHTML = studentsHTML;
+        }
+
+        async function showStudentDetails(userId) {
+            try {
+                const modal = document.getElementById('studentModal');
+                const modalBody = document.getElementById('modalBody');
+                const modalTitle = document.getElementById('modalTitle');
+                
+                modalBody.innerHTML = '<div class="loading"><div class="book-loader"></div>Loading student details...</div>';
+                modal.style.display = 'block';
+                
+                const response = await fetch(`${API_ENDPOINTS.studentDetails}?user_id=${userId}`, {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'}
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const data = await response.json();
+                if (!data.success) throw new Error(data.message || 'Failed to load student details');
+
+                const student = data.student;
+                modalTitle.textContent = `${student.full_name} - Progress Details`;
+
+                modalBody.innerHTML = `
+                    <div class="student-detail-grid">
+                        <div class="detail-card">
+                            <h4>Basic Information</h4>
+                            <div class="detail-item">
+                                <span class="detail-label">Full Name:</span>
+                                <span class="detail-value">${student.full_name}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Section:</span>
+                                <span class="detail-value">${student.section}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">ID Number:</span>
+                                <span class="detail-value">${student.id_number}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-card">
+                            <h4>Game Progress</h4>
+                            <div class="detail-item">
+                                <span class="detail-label">Overall Progress:</span>
+                                <span class="detail-value">${student.progress_percentage || 0}%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Current Stage:</span>
+                                <span class="detail-value">${student.current_stage || 1}/13</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Score:</span>
+                                <span class="detail-value">${student.score || 0}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Coins:</span>
+                                <span class="detail-value">${student.coins || 0}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Completed Quests:</span>
+                                <span class="detail-value">${student.completed_quests || 0}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Last Played:</span>
+                                <span class="detail-value">${student.last_played ? new Date(student.last_played).toLocaleDateString() : 'Never'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error loading student details:', error);
+                modalBody.innerHTML = `<div class="error-message">Error loading student details: ${error.message}</div>`;
+            }
+        }
+
+        function closeStudentModal() {
+            document.getElementById('studentModal').style.display = 'none';
+        }
+
+        async function loadLeaderboard() {
+            const container = document.getElementById('leaderboardContainer');
+            container.innerHTML = `<div class="loading">
+                <div class="book-loader">
+                    <div class="book">
+                        <div class="book-spine"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                    </div>
+                    <span class="loading-text">Loading leaderboard...</span>
+                </div>
+            </div>`;
+
+            try {
+                let url = `${API_ENDPOINTS.leaderboard}?teacher_id=${currentTeacher.id}`;
+                if (currentSection) url += `&section=${encodeURIComponent(currentSection)}`;
+
+                const response = await fetch(url, {method: 'GET', headers: {'Content-Type': 'application/json'}});
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const data = await response.json();
+                if (!data.success) throw new Error(data.message || 'Failed to load leaderboard');
+
+                const leaderboard = data.leaderboard || [];
+                displayLeaderboard(leaderboard);
+            } catch (error) {
+                console.error('Error loading leaderboard:', error);
+                container.innerHTML = `<div class="error-message">Error: ${error.message}</div>`;
+            }
+        }
+
+        function displayLeaderboard(leaderboard) {
+            const container = document.getElementById('leaderboardContainer');
+            
+            if (leaderboard.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #64748b; padding: 2rem;">No leaderboard data available.</div>';
+                return;
+            }
+            
+            container.innerHTML = `
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Student Name</th>
+                            <th>Section</th>
+                            <th>Score</th>
+                            <th>Progress</th>
+                            <th>Stage</th>
+                            <th>Last Played</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${leaderboard.map((student, index) => {
+                            return `
+                                <tr>
+                                    <td>
+                                        <span class="rank-badge ${index === 0 ? '' : index === 1 ? 'silver' : index === 2 ? 'bronze' : ''}" 
+                                              style="${index > 2 ? 'background: linear-gradient(145deg, #555, #444); color: #ccc;' : ''}">
+                                            #${index + 1}
+                                        </span>
+                                    </td>
+                                    <td><strong>${student.full_name}</strong></td>
+                                    <td>${student.section || 'N/A'}</td>
+                                    <td>${student.score || 0}</td>
+                                    <td>${student.progress_percentage || 0}%</td>
+                                    <td>${student.current_stage || 1}/29</td>
+                                    <td>${student.last_played ? new Date(student.last_played).toLocaleDateString() : 'Never'}</td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function startAutoRefresh() {
+            refreshInterval = setInterval(() => loadStudentData(), 30000);
+        }
+
+        function stopAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+                refreshInterval = null;
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            errorDiv.style.position = 'fixed';
+            errorDiv.style.top = '20px';
+            errorDiv.style.left = '50%';
+            errorDiv.style.transform = 'translateX(-50%)';
+            errorDiv.style.zIndex = '9999';
+            errorDiv.style.maxWidth = '90%';
+            
+            document.body.appendChild(errorDiv);
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'error-message';
+            successDiv.textContent = message;
+            successDiv.style.background = 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)';
+            successDiv.style.color = '#155724';
+            successDiv.style.borderColor = '#28a745';
+            successDiv.style.position = 'fixed';
+            successDiv.style.top = '20px';
+            successDiv.style.left = '50%';
+            successDiv.style.transform = 'translateX(-50%)';
+            successDiv.style.zIndex = '9999';
+            successDiv.style.maxWidth = '90%';
+            
+            document.body.appendChild(successDiv);
+            setTimeout(() => successDiv.remove(), 5000);
+        }
+
+        // Handle window events
+        window.addEventListener('beforeunload', stopAutoRefresh);
+        window.addEventListener('resize', updateScrollArrows);
+
+        // Create FilibusteroAuth object
+        window.FilibusteroAuth = {
+            isLoggedIn: function() {
+                const authData = getAuthData();
+                return authData !== null;
+            },
+            
+            getCurrentUser: function() {
+                const authData = getAuthData();
+                return authData ? authData.user : null;
+            },
+
+            hasTemporaryPassword: function() {
+                const authData = getAuthData();
+                return authData ? (authData.tempPassword || false) : false;
+            },
+
+            wasRecentlyLoggedOut: function() {
+                const logoutTime = localStorage.getItem('filibustero_logout_time');
+                if (!logoutTime) return false;
+                return (Date.now() - parseInt(logoutTime)) < 300000;
+            },
+            
+            logout: performLogout
+        };
+    </script>
+</body>
+</html>
