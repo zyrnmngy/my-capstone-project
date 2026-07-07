@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+        <meta name="theme-color" content="#000000">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <link rel="icon" href="icon/icon.png" type="image/png">
+        <link rel="apple-touch-icon" href="icon/icon.png">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            html, body {
+                width: 100%;
+                height: 100%;
+                background-color: black;
+                overflow: hidden;
+                position: fixed;
+                touch-action: none;
+                overscroll-behavior: none;
+            }
+
+            #gameContainer {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: black;
+                height: 100dvh;
+                padding: 20px;
+            }
+
+            #gameCanvas {
+                display: block;
+                image-rendering: pixelated;
+                image-rendering: crisp-edges;
+                touch-action: none;
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            /* Large Desktop (1920px+) */
+            @media (min-width: 1920px) {
+                #gameContainer {
+                    padding: 40px;
+                }
+                #gameCanvas {
+                    max-width: 1600px;
+                    max-height: 1000px;
+                    width: auto;
+                    height: auto;
+                }
+            }
+
+            /* Standard Desktop (1440px - 1919px) */
+            @media (min-width: 1440px) and (max-width: 1919px) {
+                #gameContainer {
+                    padding: 30px;
+                }
+                #gameCanvas {
+                    max-width: 1400px;
+                    max-height: 900px;
+                    width: auto;
+                    height: auto;
+                }
+            }
+
+            /* Desktop (1025px - 1439px) */
+            @media (min-width: 1025px) and (max-width: 1439px) {
+                #gameContainer {
+                    padding: 20px;
+                }
+                #gameCanvas {
+                    width: 85vw;
+                    height: 85vh;
+                    max-width: 1200px;
+                    max-height: 800px;
+                }
+            }
+
+            /* Tablet landscape */
+            @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+                #gameContainer {
+                    padding: 15px;
+                }
+                #gameCanvas {
+                    width: 92vw;
+                    height: 92vh;
+                }
+            }
+
+            /* Tablet portrait */
+            @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+                #gameContainer {
+                    padding: 10px;
+                }
+                #gameCanvas {
+                    width: 95vw;
+                    height: 95vh;
+                }
+            }
+
+            /* Mobile landscape */
+            @media (max-width: 767px) and (orientation: landscape) {
+                #gameContainer {
+                    padding: 5px;
+                }
+                #gameCanvas {
+                    width: 98vw;
+                    height: 98vh;
+                }
+            }
+
+            /* Mobile portrait */
+            @media (max-width: 767px) and (orientation: portrait) {
+                #gameContainer {
+                    padding: 5px;
+                }
+                #gameCanvas {
+                    width: 98vw;
+                    height: 98vh;
+                }
+            }
+
+            /* Maintain aspect ratio on desktop */
+            @media (min-width: 1025px) {
+                #gameCanvas {
+                    aspect-ratio: 816 / 624;
+                    object-fit: contain;
+                }
+            }
+        </style>
+        <title>Filibustero</title>
+    </head>
+    <body>
+        <!-- Embedded Browser Detection -->
+        <div id="browser-warning" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a1a; color: #d4a01e; z-index: 9999; font-family: Arial; padding: 20px; text-align: center;">
+            <div style="max-width: 500px; margin: 50px auto; background: #2a2a2a; padding: 30px; border-radius: 12px; border: 2px solid #d4a01e;">
+                <h2 style="margin-bottom: 20px;">⚠️ Browser Limitation Detected</h2>
+                <p style="margin-bottom: 15px; line-height: 1.6;">You're viewing this in Messenger's built-in browser, which has limited functionality.</p>
+                <p style="margin-bottom: 25px; line-height: 1.6; font-weight: bold;">For the best experience:</p>
+                <ol style="text-align: left; margin: 0 auto 25px; display: inline-block; line-height: 2;">
+                    <li>Tap and hold this link</li>
+                    <li>Select "Open in [Chrome/Safari/Browser]"</li>
+                    <li>Or copy the link and paste in your browser</li>
+                </ol>
+                <div style="background: #3a3a3a; padding: 10px; border-radius: 6px; margin-bottom: 20px; word-break: break-all; font-size: 12px;">
+                    <span id="game-url"></span>
+                </div>
+                <button onclick="copyUrl()" style="background: #d4a01e; color: #1a1a1a; border: none; padding: 12px 24px; font-size: 16px; border-radius: 8px; margin: 10px; cursor: pointer; font-weight: bold;">📋 Copy Link</button>
+                <button onclick="continueAnyway()" style="background: transparent; color: #d4a01e; border: 2px solid #d4a01e; padding: 12px 24px; font-size: 16px; border-radius: 8px; margin: 10px; cursor: pointer;">Continue Anyway</button>
+                <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">Note: Game may not work properly in embedded browsers</p>
+            </div>
+        </div>
+
+        <div id="gameContainer">
+            <canvas id="gameCanvas"></canvas>
+        </div>
+
+        <!-- CRITICAL: Anti-Cache Script - Must Run FIRST -->
+        <script>
+        (function() {
+            // CHANGE THIS VERSION WITH EVERY UPDATE
+            const GAME_VERSION = '2024110304';
+            window.GAME_VERSION = GAME_VERSION;
+            
+            console.log('🎮 Filibustero Version:', GAME_VERSION);
+            
+            // Detect embedded browser
+            function isEmbeddedBrowser() {
+                const ua = navigator.userAgent.toLowerCase();
+                const isEmbedded = ua.includes('fbav') || 
+                       ua.includes('messenger') || 
+                       ua.includes('instagram') ||
+                       ua.includes('twitter') ||
+                       ua.includes('tiktok') ||
+                       ua.includes('linkedin') ||
+                       ua.includes('whatsapp') ||
+                       (ua.includes('fban') && ua.includes('fbios'));
+                
+                if (isEmbedded) {
+                    console.warn('⚠️ Embedded browser detected:', ua);
+                }
+                return isEmbedded;
+            }
+            
+            window.isEmbeddedBrowser = isEmbeddedBrowser;
+            
+            // Get current URL without cache buster
+            function getCleanUrl() {
+                const url = new URL(window.location.href);
+                url.searchParams.delete('_t');
+                url.searchParams.delete('_v');
+                return url.toString();
+            }
+            
+            // Check if we need to add cache buster
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlVersion = urlParams.get('_v');
+            const storedVersion = localStorage.getItem('filibustero_version');
+            
+            console.log('URL Version:', urlVersion);
+            console.log('Stored Version:', storedVersion);
+            
+            // CRITICAL: Force cache bypass for embedded browsers or version mismatch
+            if (isEmbeddedBrowser() || urlVersion !== GAME_VERSION || storedVersion !== GAME_VERSION) {
+                console.log('🔄 Version mismatch or embedded browser - forcing refresh...');
+                
+                // Clear old cache
+                try {
+                    // Preserve cloud save data
+                    const cloudSaveKeys = [];
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        if (key && (key.includes('cloud_save') || key.includes('user_id') || key.includes('auth_token') || key.includes('game_save'))) {
+                            cloudSaveKeys.push({key: key, value: localStorage.getItem(key)});
+                        }
+                    }
+                    
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    
+                    // Restore cloud saves
+                    cloudSaveKeys.forEach(item => {
+                        localStorage.setItem(item.key, item.value);
+                    });
+                    
+                    console.log('✅ Cache cleared (cloud saves preserved)');
+                } catch (e) {
+                    console.error('Cache clear error:', e);
+                }
+                
+                // Clear browser caches
+                if ('caches' in window) {
+                    caches.keys().then(names => {
+                        return Promise.all(names.map(name => caches.delete(name)));
+                    }).catch(e => console.error('Cache delete error:', e));
+                }
+                
+                // Unregister service workers
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        return Promise.all(registrations.map(reg => reg.unregister()));
+                    }).catch(e => console.error('SW unregister error:', e));
+                }
+                
+                // Save version
+                localStorage.setItem('filibustero_version', GAME_VERSION);
+                
+                // Redirect with cache buster if not already present
+                if (urlVersion !== GAME_VERSION && !sessionStorage.getItem('redirected')) {
+                    sessionStorage.setItem('redirected', '1');
+                    const cleanUrl = getCleanUrl();
+                    const newUrl = cleanUrl + (cleanUrl.includes('?') ? '&' : '?') + '_v=' + GAME_VERSION + '&_t=' + Date.now();
+                    console.log('🔄 Redirecting to:', newUrl);
+                    window.location.replace(newUrl);
+                    return;
+                }
+            }
+            
+            console.log('✅ Version check passed');
+        })();
+        </script>
+
+        <script>
+            function copyUrl() {
+                const url = window.location.href.split('?')[0]; // Clean URL
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copied! Paste it in your browser (Chrome, Safari, etc.)');
+                }).catch(() => {
+                    // Fallback for older browsers
+                    const textarea = document.createElement('textarea');
+                    textarea.value = url;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    alert('Link copied! Paste it in your browser (Chrome, Safari, etc.)');
+                });
+            }
+
+            function continueAnyway() {
+                document.getElementById('browser-warning').style.display = 'none';
+                initializeGame();
+            }
+
+            // Show URL in warning
+            document.getElementById('game-url').textContent = window.location.href.split('?')[0];
+
+            // Game initialization
+            let currentScale = 1;
+            const gameWidth = 816;
+            const gameHeight = 624;
+            let fullscreenAttempted = false;
+
+            function initializeGame() {
+                console.log('🎮 Initializing game v' + window.GAME_VERSION);
+                try {
+                    updateCanvasSize();
+                    setupEventListeners();
+                    
+                    console.log('✅ Game initialized successfully');
+                } catch (error) {
+                    console.error('❌ Initialization error:', error);
+                }
+            }
+
+            function setupEventListeners() {
+                window.addEventListener('resize', debounce(updateCanvasSize, 250));
+                window.addEventListener('orientationchange', handleOrientationChange);
+                
+                const canvas = document.getElementById('gameCanvas');
+                canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
+                canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
+                canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
+                canvas.addEventListener('mousedown', handleMouseDown, { passive: true });
+                
+                let lastTouchEnd = 0;
+                document.addEventListener('touchend', (e) => {
+                    const now = Date.now();
+                    if (now - lastTouchEnd <= 300) {
+                        e.preventDefault();
+                    }
+                    lastTouchEnd = now;
+                }, { passive: false });
+
+                document.addEventListener('touchstart', attemptFullscreen, { once: true });
+                document.addEventListener('click', attemptFullscreen, { once: true });
+                document.addEventListener("fullscreenchange", () => {
+                    console.log("📱 Fullscreen changed — resyncing canvas...");
+                    setTimeout(() => {
+                        updateCanvasSize();
+                        // Optional: trigger a Pixi renderer resize if you use one
+                        if (window.Graphics && Graphics._renderer) {
+                            Graphics._renderer.resize(window.innerWidth, window.innerHeight);
+                        }
+                    }, 300);
+                });
+
+            }
+
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func(...args), wait);
+                };
+            }
+
+            function handleOrientationChange() {
+                setTimeout(() => {
+                    updateCanvasSize();
+                    if (isMobile() && isLandscape()) {
+                        setTimeout(attemptFullscreen, 1000);
+                    }
+                }, 100);
+            }
+
+            function handleTouchStart(e) {
+                const touches = e.changedTouches;
+                for (let i = 0; i < touches.length; i++) {
+                    const gameCoords = getGameCoordinates(touches[i].clientX, touches[i].clientY);
+                    touches[i].gameX = gameCoords.x;
+                    touches[i].gameY = gameCoords.y;
+                }
+            }
+
+            function handleTouchMove(e) {
+                const touches = e.changedTouches;
+                for (let i = 0; i < touches.length; i++) {
+                    const gameCoords = getGameCoordinates(touches[i].clientX, touches[i].clientY);
+                    touches[i].gameX = gameCoords.x;
+                    touches[i].gameY = gameCoords.y;
+                }
+            }
+
+            function handleTouchEnd(e) {
+                // Touch end handling
+            }
+
+            function handleMouseDown(e) {
+                const gameCoords = getGameCoordinates(e.clientX, e.clientY);
+                e.gameX = gameCoords.x;
+                e.gameY = gameCoords.y;
+            }
+
+            function updateCanvasSize() {
+                try {
+                    const canvas = document.getElementById('gameCanvas');
+                    if (!canvas) return;
+
+                    const container = document.getElementById('gameContainer');
+                    const rect = container.getBoundingClientRect();
+                    
+                    // Account for padding in container
+                    const containerPadding = window.innerWidth >= 1920 ? 80 : 
+                                           window.innerWidth >= 1440 ? 60 :
+                                           window.innerWidth >= 1025 ? 40 : 20;
+                    
+                    const availableWidth = rect.width - containerPadding;
+                    const availableHeight = rect.height - containerPadding;
+                    
+                    // Calculate dimensions maintaining aspect ratio
+                    const aspectRatio = gameWidth / gameHeight;
+                    let displayWidth, displayHeight;
+                    
+                    if (availableWidth / availableHeight > aspectRatio) {
+                        // Limited by height
+                        displayHeight = availableHeight;
+                        displayWidth = displayHeight * aspectRatio;
+                    } else {
+                        // Limited by width
+                        displayWidth = availableWidth;
+                        displayHeight = displayWidth / aspectRatio;
+                    }
+                    
+                    displayWidth = Math.max(displayWidth, 100);
+                    displayHeight = Math.max(displayHeight, 100);
+
+                    canvas.style.width = displayWidth + 'px';
+                    canvas.style.height = displayHeight + 'px';
+
+                    const maxResolution = 2048;
+                    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+                    
+                    canvas.width = Math.min(displayWidth * pixelRatio, maxResolution);
+                    canvas.height = Math.min(displayHeight * pixelRatio, maxResolution);
+
+                    currentScale = Math.max(displayWidth / gameWidth, 0.1);
+
+                    window.dispatchEvent(new CustomEvent('gameResize'));
+                } catch (error) {
+                    console.error('Canvas resize error:', error);
+                }
+            }
+
+            function getGameCoordinates(clientX, clientY) {
+                try {
+                    const canvas = document.getElementById('gameCanvas');
+                    const rect = canvas.getBoundingClientRect();
+                    return {
+                        x: Math.max(0, (clientX - rect.left) / currentScale),
+                        y: Math.max(0, (clientY - rect.top) / currentScale)
+                    };
+                } catch (error) {
+                    return { x: 0, y: 0 };
+                }
+            }
+
+            function isMobile() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                    (navigator.maxTouchPoints && navigator.maxTouchPoints > 2);
+            }
+
+            function isLandscape() {
+                return window.screen.orientation ? 
+                    window.screen.orientation.type.includes('landscape') : 
+                    window.innerWidth > window.innerHeight;
+            }
+
+            function attemptFullscreen() {
+                if (fullscreenAttempted || window.isEmbeddedBrowser()) return;
+                fullscreenAttempted = true;
+
+                if (!isMobile() || !isLandscape()) return;
+
+                const elem = document.documentElement;
+
+                try {
+                    if (elem.requestFullscreen) {
+                        elem.requestFullscreen().catch(() => {});
+                    } else if (elem.webkitRequestFullscreen) {
+                        elem.webkitRequestFullscreen();
+                    } else if (elem.mozRequestFullScreen) {
+                        elem.mozRequestFullScreen();
+                    } else if (elem.msRequestFullscreen) {
+                        elem.msRequestFullscreen();
+                    }
+
+                    if (window.screen && window.screen.orientation && window.screen.orientation.lock) {
+                        window.screen.orientation.lock('landscape').catch(() => {});
+                    }
+
+                    setTimeout(updateCanvasSize, 300);
+                } catch (error) {
+                    console.error('Fullscreen error:', error);
+                }
+            }
+
+            // Check on page load
+            if (window.isEmbeddedBrowser && window.isEmbeddedBrowser()) {
+                document.getElementById('browser-warning').style.display = 'block';
+            } else {
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initializeGame);
+                } else {
+                    initializeGame();
+                }
+            }
+
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    if (!window.isEmbeddedBrowser || !window.isEmbeddedBrowser()) {
+                        initializeGame();
+                    }
+                }, 100);
+            });
+        </script>
+        
+        <!-- Dynamic CSS loading with cache buster -->
+        <script>
+            (function() {
+                const version = window.GAME_VERSION || Date.now();
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/game.css?v=' + version + '&t=' + Date.now();
+                document.head.appendChild(link);
+            })();
+        </script>
+        
+        <!-- Dynamic JS loading with cache buster -->
+        <script>
+            (function() {
+                const version = window.GAME_VERSION || Date.now();
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'js/main.js?v=' + version + '&t=' + Date.now();
+                script.onerror = function() {
+                    console.error('❌ Failed to load main.js');
+                    document.getElementById('loading-screen').innerHTML = '<h2>Error Loading Game</h2><p>Could not load game files. Please check your connection and try again.</p><button onclick="location.reload()" style="background: #d4a01e; color: #1a1a1a; border: none; padding: 12px 24px; margin-top: 20px; border-radius: 8px; cursor: pointer;">Retry</button>';
+                };
+                document.body.appendChild(script);
+            })();
+        </script>
+    </body>
+</html>
